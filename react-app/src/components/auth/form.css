@@ -1,0 +1,140 @@
+.form-container {
+    margin: 0;
+    background-color: #E561B3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+/* .form-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 400px;
+    width: 40vw;
+    height: auto;
+    background-color: rgba(255,255,255,.4);
+    border-radius: 2px;
+} */
+
+/* .form-input {
+    margin-bottom: 10px;
+    font-size: 20px;
+} */
+
+input {
+    padding-left: 7px;
+    height: 40px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+button.signup{
+    white-space: nowrap;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    font-size: 25px;
+    border-radius: 2px;
+    margin: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    height: 40px;
+    min-width: auto;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+}
+
+.form-input-file {
+    margin: 10px;
+    width: 250px;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    padding-left: 10px;
+    position: relative;
+}
+
+label {
+    font-size: 30px;
+}
+
+
+/*********** SIGN IN  ***********/
+
+.login-signup-now {
+    font-size: 17px;
+}
+
+
+/* .custom-file-input::-webkit-file-upload-button {
+    display:none;
+    text-overflow: ellipsis;
+} */
+
+/* .file-button {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 10pt;
+    margin-left: 70px;
+    
+} */
+
+/* .file-button:hover {
+    color: white;
+} */
+
+/* select {
+    height: 50px;
+    width: 300px;
+    font-size: 1em;
+    border: solid 2px #E561B3;
+    border-radius: 2px;
+} */
+
+/* select:focus {
+    outline: none;
+} */
+
+/* .custom-file-input::after {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    content: "";
+    width: 250px;
+    height: 55px;
+    cursor: pointer;
+} */
+
+/* .custom-file-input:hover::before {
+    border-color: black;
+} */
+
+/* .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+} */
+
+/* .laptop-icon {
+    position: absolute;
+    top: 10px;
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-image: url("../../static/laptopicon.png");
+} */

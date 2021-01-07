@@ -1,0 +1,105 @@
+/* TODO Add site wide styles */
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento:wght@700&display=swap'); */
+* {
+    box-sizing: border-box;
+}
+
+#root {
+    min-width: 360px;
+    max-width: 100%;
+}
+
+main {
+    padding: 0px;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    background-color: black;
+}
+
+html {
+    padding: 0px;
+}
+
+.form-page {
+    display: flex;
+
+}
+
+input:focus {
+    border: none;
+}
+
+/* .wrapper {
+    position: relative;
+    min-height: 100%;
+    margin-bottom: -250px;
+    background-color: #e5e5e5;
+    background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='https://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23bec0c1' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+} */
+
+.footer {
+    font-family: Rubik;
+}
+
+.footer,
+.push {
+    height: 250px;
+}
+
+input:focus {
+    border: none;
+    outline: none;
+}
+input {
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+textarea {
+    border-radius: 2px;
+    border: none;
+    outline: none;
+}
+textarea:focus {
+    border: none;
+    outline: none;
+}
+
+.error-list {
+    color: red;
+    /* font-family: Raleway arial sans-serif; */
+}
+
+/* The emerging W3C standard
+   that is currently Firefox-only */
+* {
+scrollbar-width: auto;
+scrollbar-color: #55BCC4 black;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+width: 16px;
+
+}
+*::-webkit-scrollbar-track {
+background: black;
+}
+*::-webkit-scrollbar-thumb {
+background-color:  #55BCC4;
+border-radius: 20px;
+border: 4px solid rgba(0, 0, 0, 0);
+background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-button {
+width: 0;
+height: 0;
+display: none;
+}

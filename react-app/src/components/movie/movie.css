@@ -1,0 +1,71 @@
+.movie-page__container {
+    width: 75%;
+    min-width: 500px;
+    background-color: aqua;
+    color: white;
+    margin: 0 auto;
+}
+
+.movie-page__trailer-container {
+    width: 100%;
+    /* min-width: 500px; */
+    height: 500px;
+    background-color: bisque;
+    color: white;
+    display: flex;
+}
+
+.movie-page__poster {
+    min-width: 330px;
+    width: 330px;
+    height: auto;
+    background-size:     cover;                    
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    background-color: salmon;
+
+}
+
+.movie-page__trailer {
+    /* position: relative; */
+    width: 100%;
+    background-color: blueviolet;
+}
+
+.movie-page__content-container {
+    width: 100%;
+    min-width: 500px;
+    font-size: 16px;
+    padding-right: 50%;
+    /* display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: auto; */
+}
+
+.movie-page__plot {
+
+}
+
+.movie-page__starring {
+
+}
+
+.movie-page__movie-photos {
+
+}
+
+.movie-page__movie-photo {
+    min-width: 60px;
+    width: 100px;
+    background-size:     cover;                    
+    background-repeat:   no-repeat;
+    background-position: center center; 
+}
+
+/* .movie-page__left-col {
+    background-color: blanchedalmond;
+}
+
+.movie-page__right-col {
+    background-color: cadetblue;
+} */
