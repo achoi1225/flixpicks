@@ -4,6 +4,7 @@ from .users import seed_users, undo_users
 from .movies import seed_movies, undo_movies
 from .reviews import seed_reviews, undo_reviews
 from .roles import seed_roles, undo_roles
+from .movies_watchlists import seed_watchlist, undo_watchlist
 from app.models import db
 
 # Creates a seed group to hold our commands
@@ -17,6 +18,7 @@ def seed():
     seed_movies()
     seed_reviews()
     seed_roles()
+    seed_watchlist()
     # seed_annotations()
 
     #set the search vectors for Songs
@@ -35,5 +37,6 @@ def undo():
     undo_movies()
     undo_reviews()
     undo_roles()
+    undo_watchlist()
     # undo_annotations()
     # Add other undo functions here

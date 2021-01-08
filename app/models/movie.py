@@ -8,7 +8,7 @@ class Movie(db.Model):
     __tablename__ = 'movies'
 
     id = db.Column(db.Integer, primary_key=True)
-    imdb_movie_id = db.Column(db.String(300), nullable=False)
+    imdb_movie_id = db.Column(db.String(300), nullable=False, unique=True)
     title = db.Column(db.String(300), nullable=False)
     image = db.Column(db.String(300), nullable=False)
     description = db.Column(db.Text, nullable=False)

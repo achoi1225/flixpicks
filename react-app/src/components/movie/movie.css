@@ -1,7 +1,7 @@
 .movie-page__container {
     width: 75%;
     min-width: 500px;
-    background-color: aqua;
+    /* background-color: aqua; */
     color: white;
     margin: 0 auto;
 }
@@ -36,22 +36,10 @@
     width: 100%;
     min-width: 500px;
     font-size: 16px;
-    padding-right: 50%;
+    /* padding-right: 50%; */
     /* display: grid;
     grid-template-columns: 4fr 1fr;
     grid-template-rows: auto; */
-}
-
-.movie-page__plot {
-
-}
-
-.movie-page__starring {
-
-}
-
-.movie-page__movie-photos {
-
 }
 
 .movie-page__movie-photo {
@@ -61,6 +49,52 @@
     background-repeat:   no-repeat;
     background-position: center center; 
 }
+
+.movie-page__cast-container {
+    width: 100%;
+    /* background-color: blueviolet; */
+}
+
+.movie-page__actor-container {
+    display: flex;
+    font-size: 13px;
+    height: 74px;
+    border: 2px solid white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.movie-page__actor-thumbnail {
+    object-fit: cover;
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.movie-page__actor-name {
+    width: 23%;
+    margin-right: 20px;
+    /* background-color: bisque; */
+}
+
+.movie-page__character {
+    width: 40%;
+    /* background-color: brown; */
+}
+
+/* .movie-page__plot {
+
+} */
+
+/* .movie-page__starring {
+
+} */
+
+/* .movie-page__movie-photos {
+
+} */
+
 
 /* .movie-page__left-col {
     background-color: blanchedalmond;

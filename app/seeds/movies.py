@@ -4,6 +4,7 @@ from app.models import db, Movie
 def seed_movies():
 
     test_movie = Movie(
+        # id=1,
         imdb_movie_id='tt123456',
         title="THE TEST",
         image='https://nqg-images.s3.amazonaws.com/Taylor_Swift-01.png',
@@ -12,6 +13,7 @@ def seed_movies():
     )
 
     karate_kid = Movie(
+        # id=2,
         imdb_movie_id='tt0091326',
         title="The Karate Kid Part II",
         image='https://m.media-amazon.com/images/M/MV5BY2E3YjliMWEtYzlmOC00NmU5LWE4NGItNmIyZmNkZjkwNTA0XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg',

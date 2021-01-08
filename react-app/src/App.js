@@ -36,10 +36,10 @@ function App() {
     })();
   }, []);
 
-    const toggleClass = () => {
-      const currentState = active
-      setActive(!currentState);
-  };
+  //   const toggleClass = () => {
+  //     const currentState = active
+  //     setActive(!currentState);
+  // };
 
 
   if (!loaded) {

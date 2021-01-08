@@ -1,24 +1,14 @@
-from app.models import db, Review
+from app.models import db, Movie, WatchList
 
 
-def seed_reviews():
+def seed_watchlist():
+    movies = Movie.query.filter(Movie.id.in_([1,2])).all()
+    watchlist = WatchList(
+        user_id = 1
+    )
+    watchlist.movies = movies
 
-    objects = [
-        Review(
-            content="Was this supposed to be a movie?",
-            user_id=2,
-            movie_id=1,
-            stars=1
-        ),
-        Review(
-            content="Funniest movie ever! Still holds up!",
-            user_id=3,
-            movie_id=2,
-            stars=5
-        ),
-    ]
-
-    db.session.bulk_save_objects(objects)
+    db.session.add(watchlist)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
@@ -27,6 +17,6 @@ def seed_reviews():
 # the auto incrementing primary key
 
 
-def undo_reviews():
-    db.session.execute('TRUNCATE reviews;')
+def undo_watchlist():
+    db.session.execute('TRUNCATE watchlist;')
     db.session.commit()

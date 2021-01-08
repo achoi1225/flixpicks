@@ -11,9 +11,9 @@ def seed_users():
 
     # db.session.commit()
 
-    admin_adc = User(username='adc', email='adc@flxp.com', password='password')
-    test_user1 = User(username='test_user1', email='test_user1@flxp.com', password='password')
-    test_user2 = User(username='test_user2', email='test_user2@flxp.com', password='password')
+    admin_adc = User(id=1, username='adc', email='adc@flxp.com', password='password')
+    test_user1 = User(id=2, username='test_user1', email='test_user1@flxp.com', password='password')
+    test_user2 = User(id=3, username='test_user2', email='test_user2@flxp.com', password='password')
 
     db.session.add(admin_adc)
     db.session.add(test_user1)
