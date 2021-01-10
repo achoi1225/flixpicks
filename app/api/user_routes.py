@@ -65,7 +65,7 @@ def create_review(id):
             new_review = Review(
                 content=form.data['content'],
                 user_id=data['userId'],
-                movie_id=data['movieId'],
+                imdb_id=data['imdbId'],
                 stars=data['stars'],
             )
 

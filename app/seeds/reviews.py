@@ -7,13 +7,25 @@ def seed_reviews():
         Review(
             content="Was this supposed to be a movie?",
             user_id=2,
-            movie_id=1,
+            imdb_id="tt123456",
             stars=1
+        ),
+        Review(
+            content="Mercy is for the weak. We do not train to be merciful here. Man face you he is enemy. Enemy deserve no mercy... HONK!",
+            user_id=1,
+            imdb_id="tt0091326",
+            stars=4
+        ),
+        Review(
+            content="I learned all of my karate from watching this movie!",
+            user_id=2,
+            imdb_id="tt0091326",
+            stars=5
         ),
         Review(
             content="Funniest movie ever! Still holds up!",
             user_id=3,
-            movie_id=2,
+            imdb_id="tt0091326",
             stars=5
         ),
     ]

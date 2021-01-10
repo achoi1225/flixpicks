@@ -1,14 +1,14 @@
 .search-container {
-  width: 40%;
+  width: 20%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #888;
 }
 
 .search-bar {
-  width: 80%;
+  width: 85%;
+  height: 30px;
+  margin: 0px;
   text-align: center;
-  height: 40px;
 }
 
 .search-bar:focus {
@@ -28,7 +28,7 @@
 }
 
 .search-bar:focus ~ .search-button {
-  background-color:#E561B3;
+  /* background-color:#E561B3; */
   color: black;
 }
 

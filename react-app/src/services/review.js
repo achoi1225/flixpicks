@@ -1,4 +1,14 @@
-export const createReview = async (content, userId, movieId, stars) => {
+export const getReviews = async (imdbMovieId) => {
+	const res = await fetch(`/api/movies/${imdbMovieId}/reviews`);
+	if(res.ok) {
+		return await res.json();
+	} else if(res.status === 404) {
+		console.log("No reviews for movie");
+		return {}
+	}
+}
+
+export const createReview = async (content, userId, imdbId, stars) => {
   const response = await fetch(`/api/users/${userId}/reviews`, {
     method: 'POST',
     headers: {
@@ -7,7 +17,7 @@ export const createReview = async (content, userId, movieId, stars) => {
     body: JSON.stringify({
       content,
       userId,
-      movieId,
+      imdbId,
       stars
     })
   });

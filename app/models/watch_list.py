@@ -21,7 +21,7 @@ class WatchList(db.Model):
         return {
             "id": self.id,
             "userId": self.user_id,
-            "movieId": self.movie_id,
+            # "movieId": self.movie_id,
             "movies": [movie.to_dict_no_watchlist() for movie in self.movies],
         }
 
@@ -29,5 +29,5 @@ class WatchList(db.Model):
         return {
             "id": self.id,
             "userId": self.user_id,
-            "movieId": self.movie_id,
+            # "movieId": self.movie_id,
         }

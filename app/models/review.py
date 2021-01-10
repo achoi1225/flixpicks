@@ -8,7 +8,7 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text, nullable = False)
     user_id = db.Column(db.ForeignKey('users.id'))
-    movie_id = db.Column(db.ForeignKey('movies.id'), nullable = False)
+    imdb_id = db.Column(db.ForeignKey('movies.imdb_movie_id'), nullable = False)
     stars = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default = db.func.now())
 
@@ -27,7 +27,7 @@ class Review(db.Model):
             "id": self.id,
             "content": self.content,
             "userId": self.user_id,
-            "movieId": self.movie_id,
+            "imdb_id": self.imdb_id,
             "stars": self.stars,
             "user": self.user.to_dict_no_review(),
             "movie": self.movie.to_dict_no_review(),
@@ -39,7 +39,7 @@ class Review(db.Model):
             "id": self.id,
             "content": self.content,
             "userId": self.user_id,
-            "movieId": self.movie_id,
+            "imdb_id": self.imdb_id,
             "stars": self.stars,
             "movie": self.movie.to_dict_no_review(),
             "created_at": self.created_at,
@@ -50,7 +50,7 @@ class Review(db.Model):
             "id": self.id,
             "content": self.content,
             "userId": self.user_id,
-            "movieId": self.movie_id,
+            "imdb_id": self.imdb_id,
             "stars": self.stars,
             "user": self.user.to_dict_no_review(),
             "created_at": self.created_at,

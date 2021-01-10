@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, url_for
 import requests
-from app.models import db, Movie, Role
+from app.models import db, Movie, Role, Review
 # from flask_login import login_required
 # from app.forms import SongForm, AnnotationForm
 
@@ -100,10 +100,10 @@ def delete_movie(id):
         return {"errors": [f"Movie with ID {id} does not exist."]}
 
 # =========================================================================================================
-# GETS CAST FOR A MOVIE
-@movie_routes.route('/<imdb_id>/roles', methods=["GET"])
-def get_cast(imdb_id):
-    roles = Role.query.filter_by(imdb_id=imdb_id).all()
+# GETS CAST FOR A MOVIE (SENDS BACK 15 ACTORS TO BE DISPLAYED IN THE MOVIE PAGE)
+@movie_routes.route('/<imdb_id>/roles/15', methods=["GET"])
+def get_cast_15(imdb_id):
+    roles = Role.query.filter_by(imdb_id=imdb_id).limit(15).all()
     if roles:
         return {"roles": [role.to_dict() for role in roles]}
     else:
@@ -111,22 +111,7 @@ def get_cast(imdb_id):
         actors_data = get_cast_data_from_imdb(actors_id_list, imdb_id)
         create_role(actors_data, imdb_id)
 
-        return get_cast(imdb_id)
-        # print(f"ACTORS DATA!!!!!!!!!! {actors_data}" )
-        # //INVOKE get_cast_data_from_imdb
-
-
-        # url = "https://imdb8.p.rapidapi.com/title/get-top-cast"
-        # querystring = {"tconst": imdbId}
-        # headers = {
-        #     'x-rapidapi-key': "55e6dd2a0bmsh654e359f2dcab72p16542cjsn866969df5f18",
-        #     'x-rapidapi-host': "imdb8.p.rapidapi.com"
-        # }
-
-        # response = requests.request("GET", url, headers=headers, params=querystring)
-
-
-        return {'errors': 'Roles for movie does not exist'}, 404
+        return get_cast_15(imdb_id)
 
 # HELPER FUNCTION FOR GETTING CAST IDS
 def get_cast_id_from_imdb(imdb_id):
@@ -162,25 +147,16 @@ def get_cast_data_from_imdb(actors_id_list, imdb_id):
     response = requests.request("GET", url, headers=headers, params=querystring)
 
     return dict(response.json())
-    # character = ''
-    # actor = ''
-    # image = ''
-    # for key in actors_data:
-    #     if 'image' in actors_data[key]['charname'][0]:
-    #         image = actors_data[key]['charname'][0]['image']['url']
-    #         print(f"IMAGE!!!!! {image}")
-        
-    #     character = ", ".join(actors_data[key]['charname'][0]['characters'])
-    #     actor = actors_data[key]['charname'][0]['name']
-    #     print(f"CHARACTERS!!!!! {character}")
-    #     print(f"ACTOR!!!!! {actor}")
-
-    # return {
-    #     'character' : character,
-    #     'actor' : actor,
-    #     'image' : image
-    # }
 # =========================================================================================================
+
+
+# def get_cast_20(imdb_id):
+#     roles = Role.query.filter_by(imdb_id=imdb_id).limit(20).all()
+#     if roles:
+#         return {"roles": [role.to_dict() for role in roles]}
+#     else:
+#         return {'errors': 'Roles for movie does not exist'}, 404
+
 
 # CREATE ROLE
 # @movie_routes.route('/<int:id>/roles', methods=["POST"])
@@ -210,30 +186,11 @@ def create_role(actors_data, imdb_id):
 
     return {'success': 'Roles successfully created'}, 200
 
-# export const getCastIdFromIMDB = async (imdbMovieId) = > {
-#     const res = await fetch(`https: // imdb8.p.rapidapi.com/title/get-top-cast?tconst=${imdbMovieId}`, {
-#         "method": "GET",
-#      			"headers": {
-#                             "x-rapidapi-key": '55e6dd2a0bmsh654e359f2dcab72p16542cjsn866969df5f18',
-#                             "x-rapidapi-host": "imdb8.p.rapidapi.com"
-#                         }
-#     })
-
-#     const actorIdList = []
-#     if (res.ok) {
-#         const castListJson = await res.json()
-
-#         // Filter list of actors to just their IDs
-#         for (const key in castListJson) {
-#             const actorIdSplit = castListJson[key].split('/')
-#             actorIdList.push(actorIdSplit[2])
-#         }
-#         console.log("ACTOR LIST!!! ", actorIdList)
-#         // return castListJson
-#     } else {
-#         console.log(res.error)
-#     }
-
-#     const castData = await getCastFromIMDB(actorIdList)
-#     return castData
-# }
+# GET ALL REVIEWS FOR ONE MOVIE
+@movie_routes.route('/<imdb_id>/reviews', methods=["GET"])
+def get_reviews(imdb_id):
+    reviews = Review.query.filter_by(imdb_id=imdb_id).all()
+    if reviews:
+        return {"reviews": [review.to_dict() for review in reviews]}
+    else:
+        return {'errors': 'Reviews for movie does not exist'}, 404

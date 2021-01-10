@@ -7,3 +7,4 @@ review_routes = Blueprint('review', __name__)
 def get_one_review(id):
     review = Review.query.all(id)
     return {"review": review.to_dict()}
+

@@ -50,7 +50,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* <div className="wrapper"> */}
-        {/* <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} setUser={setUser} user={user}/> */}
+        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} setUser={setUser} user={user}/>
         <Switch>
           <Route path="/sign-up" exact={true}>
               {/* <LoginForm authenticated={authenticated} active={active} setAuthenticated={setAuthenticated} setUser={setUser} /> */}
@@ -59,12 +59,6 @@ function App() {
           <ProtectedRoute path="/profile" exact={true} authenticated={authenticated}>
               <Profile user={user} />
           </ProtectedRoute>
-          {/* <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-            <UsersList/>
-          </ProtectedRoute> */}
-          {/* <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-            <User />
-          </ProtectedRoute> */}
           <Route path="/" exact={true} authenticated={authenticated}>
             <h1>Homepage</h1>
           </Route>
@@ -73,9 +67,9 @@ function App() {
             <ReviewForm user={user}/>
           </Route>
 
-          <Route path="/movie-test" exact={true}>
-            <Movie />
-          </Route>
+          <ProtectedRoute path="/movie" exact={true} authenticated={authenticated}>
+            <Movie user={user}/>
+          </ProtectedRoute>
       </Switch>
       {/* </div> */}
     </BrowserRouter>

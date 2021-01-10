@@ -8,15 +8,9 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
   const [lastSearch, setLastSearch] = useState('')
   const location = useLocation();
 
-  
-  const clearSearch = (e) => {
-    const target = e.target;
-    
-    if (target
-      && !target.classList.contains('search-link')
-      && !target.closest('.search-close')) {
-        if (target.closest('.search-container')) return;
-      }
+    const clearSearch = (e) => {
+      const target = e.target;
+      
       const searchInput = document.getElementById('search');
       searchInput.value = null;
       document.getElementById('search-results').style.display = null;
@@ -34,41 +28,34 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
       history.push("/profile")
     }
     
-    const rerouteCreate = () => {
-      history.push("/create-song")
-    }
-    
     if(location.pathname === '/sign-up') return null
     
     return (
       <nav className="nav-bar" onClick={clearSearch}>
-      <div className="logo">
-        <div className="radio"></div>
-        <div className="home-link" onClick={rerouteHome}>
-          NQG
+        {/* <div className="logo"> */}
+          <div className="home-link" onClick={rerouteHome}>
+            flixpicks
+          </div>
+        {/* </div> */}
+        <Search clearSearch={clearSearch} lastSearch={lastSearch} setLastSearch={setLastSearch}/>
+        <div className="user-buttons">
+          {authenticated?
+            <>
+              <LogoutButton setAuthenticated={setAuthenticated} setUser={setUser} />
+              <button className="nav-button" onClick={rerouteProfile}>
+              <div className="profileButton">
+                {<i className="fas fa-user-circle " ></i>}
+              </div>
+              </button>
+            </>
+            :
+            <>
+              <button className="nav-button" onClick={rerouteRegister}>Sign up</button>
+              <button className="nav-button" onClick={rerouteRegister}>Log in</button>
+            </>
+          }
         </div>
-      </div>
-      <Search clearSearch={clearSearch} lastSearch={lastSearch} setLastSearch={setLastSearch}/>
-      <div className="user-buttons">
-        {authenticated?
-        <>
-          <button className="nav-button" onClick={rerouteProfile}>
-            <div className="profileButton">
-              {<i className="fas fa-user-circle " ></i>}
-            </div>
-            </button>
-            <button className="nav-button" onClick={rerouteCreate}>
-              Create Song
-            </button>
-            <LogoutButton setAuthenticated={setAuthenticated} setUser={setUser} />
-          </>
-          :
-          <>
-            <button className="nav-button" onClick={rerouteRegister}>Register</button>
-          </>
-        }
-      </div>
-    </nav>
+      </nav>
   );
 }
 
