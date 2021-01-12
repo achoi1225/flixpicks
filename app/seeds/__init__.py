@@ -5,6 +5,7 @@ from .movies import seed_movies, undo_movies
 from .reviews import seed_reviews, undo_reviews
 from .roles import seed_roles, undo_roles
 from .movies_watchlists import seed_watchlist, undo_watchlist
+from .trailers import seed_trailers, undo_trailers
 from app.models import db
 
 # Creates a seed group to hold our commands
@@ -19,16 +20,7 @@ def seed():
     seed_reviews()
     seed_roles()
     seed_watchlist()
-    # seed_annotations()
-
-    #set the search vectors for Songs
-    # songs = Song.query.all()
-    # for song in songs:
-    #     song.create_tsvector()
-
-    # db.session.bulk_save_objects(songs)
-    # db.session.commit()
-    # Add other seed functions here
+    seed_trailers()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
@@ -38,5 +30,5 @@ def undo():
     undo_reviews()
     undo_roles()
     undo_watchlist()
-    # undo_annotations()
-    # Add other undo functions here
+    undo_trailers()
+

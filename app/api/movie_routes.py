@@ -1,93 +1,83 @@
 from flask import Blueprint, jsonify, request, url_for
 import requests
-from app.models import db, Movie, Role, Review
-# from flask_login import login_required
-# from app.forms import SongForm, AnnotationForm
-
+import os
+from app.models import db, Movie, Role, Review, Trailer
 
 movie_routes = Blueprint('movies', __name__)
 
-# REGEX TO CHECK FOR EXTENSIONS
-#  \.(?i)(jpe?g|png|gif)$
+rapid_api_key = os.environ.get('RAPID_API_KEY')
 
-def validation_errors_to_error_messages(validation_errors):
-    errorMessages = []
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f"{field} : {error}")
-    return errorMessages
-
+# =========================================================================================================
 # GETS ALL MOVIES
-@movie_routes.route('/', methods=["GET"])
-def get_movies():
-    movies = Movie.query.all()
-    print("movies!!!!!!", movies)
-    return {"movies": [movie.to_dict() for movie in movies]}
+# @movie_routes.route('/', methods=["GET"])
+# def get_movies():
+#     movies = Movie.query.all()
+#     return {"movies": [movie.to_dict() for movie in movies]}
 
 # GETS ONE MOVIE
 @movie_routes.route('/<id>', methods=["GET"])
 def get_one_movie(id):
-    print(f"ID!! {id}")
     movie = Movie.query.filter_by(imdb_movie_id=id).first()
-    print(f"MOVIE!!! {movie}")
+
     if movie:
-        return movie.to_dict()
+        movie = movie.to_dict()
+        trailer = get_one_trailer(id)
+        movie['trailer'] = trailer
+        # print(f"TRAILER!!!! {movie}")
+        return movie
     else:
-        return {'errors': 'Movie does not exist'}, 404
+        # return {'errors': 'Movie does not exist'}, 404
+        popular = False
+        best_picture = False
+        coming_soon = False
+
+        # print(f"BEFORE GOING TO GET ONE TRAILER!!!")
+        new_movie = create_movie(id, popular, best_picture, coming_soon)
+
+        trailer = get_one_trailer(id)
+    
+        new_movie['trailer'] = trailer
+
+        print("MOVIE CREATED!!!")
+        return new_movie
 
 # CREATE MOVIE
-@movie_routes.route('/', methods=["POST"])
-def create_movie():
-    if request.is_json:
-        data = request.get_json()
+# @movie_routes.route('/', methods=["POST"])
+def create_movie(imdb_movie_id, popular, best_picture, coming_soon):
+    url = "https://imdb8.p.rapidapi.com/title/get-overview-details"
+    querystring = {"tconst": imdb_movie_id, "currentCountry": "US"}
+    headers = {
+        'x-rapidapi-key': rapid_api_key,
+        'x-rapidapi-host': "imdb8.p.rapidapi.com"
+    }
+    response = requests.request(
+        "GET", url, headers=headers, params=querystring)
 
-        url = "https://imdb8.p.rapidapi.com/title/get-overview-details"
-        querystring = {"tconst": data['imdbMovieId'], "currentCountry": "US"}
-        headers = {
-            'x-rapidapi-key': "55e6dd2a0bmsh654e359f2dcab72p16542cjsn866969df5f18",
-            'x-rapidapi-host': "imdb8.p.rapidapi.com"
-        }
-        print("IN CREATE MOVIE!!!!")
-        response = requests.request("GET", url, headers=headers, params=querystring)
+    response = dict(response.json())
 
-        response = dict(response.json())
+    # Check to see if key 'plotOutline' exists
+    plotOutline = "* Plot not available *"
+    image = "image unavailable"
 
-        # title = response['title']['title']
-        # image = response['title']['image']['url']
-        # description = response['plotOutline']['text']
-        # year = response['title']['year']
+    if 'plotOutline' in response:
+        plotOutline = response['plotOutline']['text']
+    if 'image' in response['title']:
+        image = response['title']['image']['url']
 
-        print(f"RESPONSE!!!!!!!!!!!!!! {response}")
-        print(f"TITLE!!!!!! {response['title']['title']}")
-        print(f"IMAGE!!!!!! {response['title']['image']['url']}")
-        print(f"DESCRIPTION!!!!!! {response['plotOutline']['text']}")
-        print(f"YEAR!!!!!! {response['title']['year']}")
+    new_movie = Movie(
+        imdb_movie_id=imdb_movie_id,
+        title=response['title']['title'],
+        image=image,
+        description=plotOutline,
+        year=response['title']['year'],
+        popular=popular,
+        best_picture=best_picture,
+        coming_soon=coming_soon,
+    )
 
-        new_movie = Movie(
-            imdb_movie_id=data['imdbMovieId'],
-            title=response['title']['title'],
-            image=response['title']['image']['url'],
-            description=response['plotOutline']['text'],
-            year=response['title']['year'],
-        )
-
-        db.session.add(new_movie)
-        db.session.commit()
-        return new_movie.to_dict()
-    else:
-        return {"error": "The request payload is not in JSON format"}
-
-
-# export const getMovieFromIMDB = async (imdbMovieId) => {
-# 	const res = await fetch(`https://imdb8.p.rapidapi.com/title/get-overview-details?tconst=${imdbMovieId}&currentCountry=US`, {
-# 			"method": "GET",
-# 			"headers": {
-# 				"x-rapidapi-key": '55e6dd2a0bmsh654e359f2dcab72p16542cjsn866969df5f18',
-# 				"x-rapidapi-host": "imdb8.p.rapidapi.com"
-# 			}
-# 		})
-# 		return res.ok ? await res.json() : console.log(res.error)
-# }
+    db.session.add(new_movie)
+    db.session.commit()
+    return new_movie.to_dict()
 
 # DELETE MOVIE
 @movie_routes.route('/<int:id>', methods=["DELETE"])
@@ -98,6 +88,7 @@ def delete_movie(id):
         return {"response": f"Movie with ID {id} has been deleted."}
     else:
         return {"errors": [f"Movie with ID {id} does not exist."]}
+# =========================================================================================================
 
 # =========================================================================================================
 # GETS CAST FOR A MOVIE (SENDS BACK 15 ACTORS TO BE DISPLAYED IN THE MOVIE PAGE)
@@ -118,7 +109,7 @@ def get_cast_id_from_imdb(imdb_id):
     url = "https://imdb8.p.rapidapi.com/title/get-top-cast"
     querystring = {"tconst": imdb_id}
     headers = {
-        'x-rapidapi-key': "55e6dd2a0bmsh654e359f2dcab72p16542cjsn866969df5f18",
+        'x-rapidapi-key': rapid_api_key,
         'x-rapidapi-host': "imdb8.p.rapidapi.com"
     }
 
@@ -135,28 +126,19 @@ def get_cast_id_from_imdb(imdb_id):
 
 # HELPER FUNCTION FOR GETTING CAST DATA WITH THE LIST PASSED IN
 def get_cast_data_from_imdb(actors_id_list, imdb_id):
+    # Join array of actor ids in to one query string
     query_string = "&id=".join(actors_id_list)
-    # print(f"QUERY STRING!!!! {queryString}")
+
     url = "https://imdb8.p.rapidapi.com/title/get-charname-list"
     querystring = {"id": f"{query_string}", "tconst": f"{imdb_id}", "currentCountry": "US", "marketplace": "ATVPDKIKX0DER", "purchaseCountry": "US"}
     headers = {
-        'x-rapidapi-key': "55e6dd2a0bmsh654e359f2dcab72p16542cjsn866969df5f18",
+        'x-rapidapi-key': rapid_api_key,
         'x-rapidapi-host': "imdb8.p.rapidapi.com"
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
     return dict(response.json())
-# =========================================================================================================
-
-
-# def get_cast_20(imdb_id):
-#     roles = Role.query.filter_by(imdb_id=imdb_id).limit(20).all()
-#     if roles:
-#         return {"roles": [role.to_dict() for role in roles]}
-#     else:
-#         return {'errors': 'Roles for movie does not exist'}, 404
-
 
 # CREATE ROLE
 # @movie_routes.route('/<int:id>/roles', methods=["POST"])
@@ -171,8 +153,6 @@ def create_role(actors_data, imdb_id):
 
         character = ", ".join(actors_data[key]['charname'][0]['characters'])
         actor = actors_data[key]['charname'][0]['name']
-        # print(f"CHARACTERS!!!!! {character}")
-        # print(f"ACTOR!!!!! {actor}")
 
         new_role = Role(
             imdb_id=imdb_id,
@@ -185,12 +165,233 @@ def create_role(actors_data, imdb_id):
         db.session.commit()
 
     return {'success': 'Roles successfully created'}, 200
+# =========================================================================================================
 
+# =========================================================================================================
+# GET MOST POPULAR MOVIES FOR HOMEPAGE
+@movie_routes.route('/most-popular', methods=["GET"])
+def get_most_popular():
+    most_popular = Movie.query.filter_by(popular=True).all()
+    if most_popular:
+        return {"most_popular": [movie.to_dict() for movie in most_popular]}
+    else:
+        # return {'errors': 'Most popular movies do not exist'}, 404
+        url = "https://imdb8.p.rapidapi.com/title/get-most-popular-movies"
+        querystring = {"homeCountry": "US", "purchaseCountry": "US", "currentCountry": "US"}
+        headers = {
+            'x-rapidapi-key': rapid_api_key,
+            'x-rapidapi-host': "imdb8.p.rapidapi.com"
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        response = list(response.json())
+        popular_movies_list = [el.split("/")[2] for el in response]
+        create_most_popular_movies(popular_movies_list)
+
+        print("SENDING BACK MOST POPULAR!!!!")
+        return get_most_popular()
+        # print(f"MOVIES LIST!! {popular_movies_list}")
+
+# Helper function to create most popular movies
+def create_most_popular_movies(movie_list):
+    print("IN CREATE MOST POPULAR")
+    count = 0
+    for movie_id in movie_list:
+        if count == 10:
+            break
+        else:
+            popular = True
+            best_picture = False
+            coming_soon = False
+            create_movie(movie_id, popular, best_picture, coming_soon)
+            count += 1
+    
+    print("CREATED MOST POPULAR MOVIES")
+    return
+# =========================================================================================================
+
+# =========================================================================================================
+# GET BEST PICTURE MOVIES
+@movie_routes.route('/best-picture', methods=["GET"])
+def get_best_picture():
+    best_picture = Movie.query.filter_by(best_picture=True).all()
+    if best_picture:
+        return {"best_picture": [movie.to_dict() for movie in best_picture]}
+    else:
+        url = "https://imdb8.p.rapidapi.com/title/get-best-picture-winners"
+        headers = {
+            'x-rapidapi-key': rapid_api_key,
+            'x-rapidapi-host': "imdb8.p.rapidapi.com"
+        }
+
+        response = requests.request("GET", url, headers=headers)
+
+        response = list(response.json())
+        best_picture_list = [el.split("/")[2] for el in response]
+        print(f"BEST PIC LIST!! {best_picture_list}")
+
+        create_best_picture_movies(best_picture_list)
+
+        print("SENDING BACK BEST PICTURE!!!!")
+        return get_best_picture()
+
+# Helper function to create best picture movies
+def create_best_picture_movies(movie_list):
+    print("IN CREATE BEST PICTURE")
+    count = 0
+    for movie_id in movie_list:
+        if count == 10:
+            break
+        else:
+            popular = False
+            best_picture = True
+            coming_soon = False
+            create_movie(movie_id, popular, best_picture, coming_soon)
+            count += 1
+
+    print("CREATED BEST PICTURE MOVIES")
+    return
+# =========================================================================================================
+
+# =========================================================================================================
+# GET COMING SOON MOVIES
+@movie_routes.route('/coming-soon', methods=["GET"])
+def get_coming_soon():
+    coming_soon = Movie.query.filter_by(coming_soon=True).all()
+    if coming_soon:
+        return {"coming_soon": [movie.to_dict() for movie in coming_soon]}
+    else:
+        url = "https://imdb8.p.rapidapi.com/title/get-coming-soon-movies"
+        querystring = {"homeCountry":"US","purchaseCountry":"US","currentCountry":"US"}
+        headers = {
+            'x-rapidapi-key': rapid_api_key,
+            'x-rapidapi-host': "imdb8.p.rapidapi.com"
+        }
+
+        response = requests.request(
+            "GET", url, headers=headers, params=querystring)
+
+        response = list(response.json())
+        coming_soon_list = [el.split("/")[2] for el in response]
+
+        print(f"COMING SOON LIST!! {coming_soon_list}")
+
+        create_coming_soon_movies(coming_soon_list)
+
+        print("SENDING BACK COMING SOON MOVIES!!!!")
+        # return get_coming_soon()
+
+# Helper function to create best picture movies
+def create_coming_soon_movies(movie_list):
+    print("IN CREATE COMING SOON!!!")
+    count = 0
+    for movie_id in movie_list:
+        if count == 10:
+            break
+        else:
+            popular = False
+            best_picture = False
+            coming_soon = True
+            create_movie(movie_id, popular, best_picture, coming_soon)
+            count += 1
+
+    print("CREATED COMING SOON MOVIES!!!")
+    return
+# =========================================================================================================
+
+# def get_cast_20(imdb_id):
+#     roles = Role.query.filter_by(imdb_id=imdb_id).limit(20).all()
+#     if roles:
+#         return {"roles": [role.to_dict() for role in roles]}
+#     else:
+#         return {'errors': 'Roles for movie does not exist'}, 404
+
+
+# # CREATE ROLE
+# # @movie_routes.route('/<int:id>/roles', methods=["POST"])
+# def create_role(actors_data, imdb_id):
+#     for key in actors_data:
+#         character = ''
+#         actor = ''
+#         image = ''
+#         if 'image' in actors_data[key]['charname'][0]:
+#             image = actors_data[key]['charname'][0]['image']['url']
+#             # print(f"IMAGE!!!!! {image}")
+
+#         character = ", ".join(actors_data[key]['charname'][0]['characters'])
+#         actor = actors_data[key]['charname'][0]['name']
+#         # print(f"CHARACTERS!!!!! {character}")
+#         # print(f"ACTOR!!!!! {actor}")
+
+#         new_role = Role(
+#             imdb_id=imdb_id,
+#             character=character,
+#             actor=actor,
+#             image=image,
+#         )
+
+#         db.session.add(new_role)
+#         db.session.commit()
+
+#     return {'success': 'Roles successfully created'}, 200
+
+
+# =========================================================================================================
 # GET ALL REVIEWS FOR ONE MOVIE
 @movie_routes.route('/<imdb_id>/reviews', methods=["GET"])
 def get_reviews(imdb_id):
-    reviews = Review.query.filter_by(imdb_id=imdb_id).all()
+    reviews = Review.query.filter_by(imdb_id=imdb_id).order_by(Review.created_at.desc()).all()
     if reviews:
         return {"reviews": [review.to_dict() for review in reviews]}
     else:
         return {'errors': 'Reviews for movie does not exist'}, 404
+# =========================================================================================================
+
+# =========================================================================================================
+# GETS ONE TRAILER FOR A MOVIE
+# @movie_routes.route('/<imdb_id>/trailer', methods=["GET"]) 
+def get_one_trailer(imdb_id):
+    print("IN GET ON TRAILER!!!")
+    trailer = Trailer.query.filter_by(imdb_id=imdb_id).first()
+    if trailer:
+        return trailer.to_dict()
+    else:
+        url = "https://imdb8.p.rapidapi.com/title/get-videos"
+        querystring = {"tconst": imdb_id, "limit": "10", "region": "US"}
+        headers = {
+            'x-rapidapi-key': rapid_api_key,
+            'x-rapidapi-host': "imdb8.p.rapidapi.com"
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
+        if response.ok:
+            response = dict(response.json())
+            return create_trailer(response, imdb_id)
+        else:
+            print("Request to imdb failed")
+
+# CREATE TRAILER
+def create_trailer(data, imdb_id):
+    print(f"DATA!!!!!!!!!!!!! {data['resource']['videos']}")
+    trailer_id = ''
+    videos = data['resource']['videos'][0]
+    if videos['contentType'] == "Trailer":
+        trailer_id = videos['id'].split("/")[2]
+    
+    trailer = Trailer(
+        imdb_id=imdb_id,
+        trailer_id=trailer_id
+    )
+
+    print(f"TRAILER!!!!!!!!!!!!!!! {trailer}")
+    db.session.add(trailer)
+    db.session.commit()
+
+    print("LEAVING CREATE TRAILER!!!!!!")
+
+    return trailer.to_dict()
+# =========================================================================================================
+
+
+

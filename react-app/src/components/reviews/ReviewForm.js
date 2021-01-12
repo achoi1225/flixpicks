@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import { createReview } from '../../services/review'
 import './review-form.css';
 
-const ReviewForm = ({ user, imdbId }) => {
+const ReviewForm = ({ user, imdbId, setReviews, getReviews }) => {
     const [errors, setErrors] = useState([]);
     const [content, setContent] = useState("");
     const [userId, setUserId] = useState("");
@@ -11,14 +11,14 @@ const ReviewForm = ({ user, imdbId }) => {
     // const [stars, setStars] = useState(4);
     const [rating, setRating] = useState(null)
 
-      useEffect(() => {
-        if(user) {
-            setUserId(user.id)
-        }
-        // (async () => {
-        // })()
-        console.log("USER ID! ", userId)
-      }, [user]);
+    //   useEffect(() => {
+    //     if(user) {
+    //         setUserId(user.id)
+    //     }
+    //     // (async () => {
+    //     // })()
+    //     console.log("USER ID! ", userId)
+    //   }, [user]);
 
     //   let history = useHistory();
   
@@ -27,8 +27,10 @@ const ReviewForm = ({ user, imdbId }) => {
         if(!rating) {
             setErrors(["Please rate this movie"])
         } else {
-            const newReview = await createReview(content, userId, imdbId, rating)
-            console.log("NEW REVIEW!!!", newReview)
+            const newReview = await createReview(content, user.id, imdbId, rating);
+            const reviews = await getReviews(imdbId)
+            console.log("REVIEWS!!!", reviews);
+            setReviews(reviews.reviews);
         }
     };
 
@@ -43,7 +45,6 @@ const ReviewForm = ({ user, imdbId }) => {
         setRating(parseInt(e.target.id))
         e.stopPropagation();
     }
-
 
     if(!user  || !imdbId) {
         return null;

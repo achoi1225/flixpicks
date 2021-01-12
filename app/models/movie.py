@@ -21,6 +21,7 @@ class Movie(db.Model):
     reviews = relationship('Review', back_populates="movie", order_by='desc(Review.id)')
     watch_lists = relationship('WatchList', secondary= movies_watchlist)
     roles = relationship('Role', back_populates="movie", order_by='asc(Role.id)')
+    trailer = relationship('Trailer', backref="movie", uselist=False)
 
     def to_dict(self):
         return {
@@ -29,11 +30,11 @@ class Movie(db.Model):
             "title": self.title,
             "image": self.image,
             "description": self.description,
-            # "starring": self.starring,
             "year": self.year,
             "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
             "reviews": [review.to_dict_no_movie() for review in self.reviews],
             "roles": [role.to_dict_no_movie() for role in self.roles],
+            # "trailer": self.trailer.to_dict(),
         }
 
     def to_dict_no_review(self):
@@ -43,10 +44,10 @@ class Movie(db.Model):
             "title": self.title,
             "image": self.image,
             "description": self.description,
-            # "starring": self.starring,
             "year": self.year,
             "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
             "roles": [role.to_dict_no_movie() for role in self.roles],
+            # "trailer": self.trailer.to_dict()
         }
 
     def to_dict_no_watchlist(self):
@@ -56,10 +57,10 @@ class Movie(db.Model):
             "title": self.title,
             "image": self.image,
             "description": self.description,
-            # "starring": self.starring,
             "year": self.year,
             "reviews": [review.to_dict_no_movie() for review in self.reviews],
             "roles": [role.to_dict_no_movie() for role in self.roles],
+            "trailer": self.trailer.to_dict()
         }
 
     def to_dict_no_role(self):
@@ -69,8 +70,8 @@ class Movie(db.Model):
             "title": self.title,
             "image": self.image,
             "description": self.description,
-            # "starring": self.starring,
             "year": self.year,
             "reviews": [review.to_dict_no_movie() for review in self.reviews],
             "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
+            # "trailer": self.trailer.to_dict()
         }

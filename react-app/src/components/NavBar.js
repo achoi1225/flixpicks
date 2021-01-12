@@ -12,6 +12,7 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
       const target = e.target;
       
       const searchInput = document.getElementById('search');
+      console.log("clicked on nav!!", searchInput.value)
       searchInput.value = null;
       document.getElementById('search-results').style.display = null;
     }
@@ -31,10 +32,12 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
     if(location.pathname === '/sign-up') return null
     
     return (
-      <nav className="nav-bar" onClick={clearSearch}>
+      <nav className="nav-bar" >
         {/* <div className="logo"> */}
-          <div className="home-link" onClick={rerouteHome}>
-            flixpicks
+          <div className="home-link__container">
+            <div className="home-link" onClick={rerouteHome}>
+              flixpicks
+            </div>
           </div>
         {/* </div> */}
         <Search clearSearch={clearSearch} lastSearch={lastSearch} setLastSearch={setLastSearch}/>

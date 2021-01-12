@@ -16,8 +16,16 @@
 
 }
 
+.home-link__container {
+    height: 30px;
+    flex-grow: 1;
+    background-color: blanchedalmond;
+}   
+
 .home-link {
     height: 30px;
+    width: 100%;
+    max-width: 120px;
     cursor: pointer;
     font-size: 30px;
     line-height: 24px;
@@ -25,7 +33,7 @@
     background: -webkit-linear-gradient(90deg, #ed0202 0%, #a50303 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    flex-grow: 1;
+    /* background-color: brown; */
 }
 .home-link:hover {
     color: white;

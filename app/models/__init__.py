@@ -5,3 +5,4 @@ from .review import Review
 from .watch_list import WatchList
 from .follow import Follow
 from .role import Role
+from .trailer import Trailer

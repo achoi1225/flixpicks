@@ -1,0 +1,55 @@
+.search-result__container {
+    width: 100%;
+    height: 100vh;
+    padding: 0 50px;
+    margin: 40px 0 40px 0;
+    /* background-color: burlywood; */
+    color: white;
+}
+
+.search_result {
+    width: 100%;
+    height: auto;
+    margin-top: 0px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto;
+    column-gap: 2%;
+    row-gap: 4%;
+    /* background-color: brown; */
+}
+
+.search_result .card-container {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 3px;
+    overflow: hidden;
+    color: white;
+    /* background-color: #2b2a2a; */
+}
+
+.search_result .poster {
+    width: 100%;
+    padding-top: 149%;
+    background-repeat:   no-repeat;
+    background-size: contain;                    
+}
+
+.search_result .title-container {
+    padding-top: 5px;
+    text-align: center;
+    margin-top: -1px;
+}
+
+.search_result .movie-title {
+    /* font-size: 19px; */
+    font-size: 0.8vw;
+    line-height: 1vw;
+    font-weight: 500;
+    /* word-spacing: 100vw; */
+    /* text-align: center; */
+}
+
+.search_result .movie-link {
+    text-decoration: none;
+}

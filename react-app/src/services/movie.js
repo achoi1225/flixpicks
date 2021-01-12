@@ -1,38 +1,59 @@
 
-// export const getMovies = async (search_input) => {
-// 	// console.log("TEST!!! ", process.env.RAPID_API_KEY,)
-// 	const res = await fetch(`https://imdb8.p.rapidapi.com/title/auto-complete?q=${search_input}`, {
-// 			"method": "GET",
-// 			"headers": {
-// 				"x-rapidapi-key": '55e6dd2a0bmsh654e359f2dcab72p16542cjsn866969df5f18',
-// 				"x-rapidapi-host": "imdb8.p.rapidapi.com"
-// 			}
-// 		})
-// 		return res.ok ? await res.json() : console.log(res.error)
-// }
-
+// GET MOVIE FOR MOVIE PAGE
 export const getMovie = async (imdbMovieId) => {
 	const res = await fetch(`/api/movies/${imdbMovieId}`);
 	if(res.ok) {
 		return await res.json();
-	} else if(res.status === 404) {
-		console.log("MOVIE NOT FOUND");
-		return await createMovie(imdbMovieId)
-
+	} else {
+		console.log(res.error)
 	}
 }
 
-export const createMovie = async (imdbMovieId) => {
-	const res = await fetch("/api/movies/", {
-		method: "POST",
-		headers: {
-		"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			imdbMovieId,
-		}),
-	});
-	return res.ok ? await res.json() : console.log(res.error)
+// CREATE A NEW MOVIE
+// export const createMovie = async (imdbMovieId) => {
+// 	const res = await fetch("/api/movies/", {
+// 		method: "POST",
+// 		headers: {
+// 		"Content-Type": "application/json",
+// 		},
+// 		body: JSON.stringify({
+// 			imdbMovieId,
+// 			'popular': false,
+// 			'bestPicture': false,
+// 			'comingSoon': false
+// 		}),
+// 	});
+// 	return res.ok ? await res.json() : console.log(res.error)
+// }
+
+// GET MOST POPULAR MOVIES FOR HOMEPAGE (10 MOVIES)
+export const getMostPopularMovies = async () => {
+	const res = await fetch(`/api/movies/most-popular`);
+	if(res.ok) {
+		return await res.json();
+	} else {
+		console.log(res.error)
+	}
+}
+
+// GET BEST PICTURE MOVIES FOR HOMEPAGE (10 MOVIES)
+export const getBestPictureMovies = async () => {
+	const res = await fetch(`/api/movies/best-picture`);
+	if(res.ok) {
+		return await res.json();
+	} else {
+		console.log(res.error)
+	}
+}
+
+// GET COMING SOON MOVIES FOR HOMEPAGE (10 MOVIES)
+export const getComingSoonMovies = async () => {
+	const res = await fetch(`/api/movies/coming-soon`);
+	if(res.ok) {
+		return await res.json();
+	} else {
+		console.log(res.error)
+	}
 }
 
 // GET CAST: First check database to see if movie id exists.  If so, return the data. If not, create a cast

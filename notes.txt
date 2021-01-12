@@ -1,30 +1,57 @@
 homepage:
 title/get-most-popular-movies, title/get-coming-soon-movies, title/get-best-picture-winners
-[100 items
-0:"/title/tt7126948/"
-1:"/title/tt2948372/"
-2:"/title/tt10539608/"
-3:"/title/tt10600398/"
-4:"/title/tt6723592/"
-5:"/title/tt9691136/"
-6:"/title/tt0451279/"
-7:"/title/tt9620292/"
-8:"/title/tt4566758/"
-9:"/title/tt0314331/"
-10:"/title/tt10280276/"
-11:"/title/tt10362466/"
-12:"/title/tt10288566/"
-13:"/title/tt2850386/"
-14:"/title/tt10514222/"
-15:"/title/tt0068646/"
-16:"/title/tt7737786/"
-17:"/title/tt10161886/"
-18:"/title/tt8367814/"
-19:"/title/tt8784956/"
-20:"/title/tt9827834/"
-]
+
+EDITS TO MAKE!!!
+- create_most..., create_best..., create_coming... can all be a single function by passing 
+in the values for 'popular', 'coming_soon' and 'best_picture'
+
+1.11.2020 (Mon) -
+Had to add more routes and an extra trailer table because of unforseen order of how the queries to imdb api are made.  
+having trouble with creating a responsive design similar to Netflix - Having cards change size proportionally with size of window
 
 https://www.imdb.com/video/imdb/vi3107897625/imdb/embed?autoplay=false&width=640
 
 https://imdb-video.media-imdb.com/vi2538013721/
 https://imdb-video.media-imdb.com/vi2538013721/MV5BYjQ4NjcxMWEtMTk5ZS00ZWY3LTg2YzgtMWMzOWFiYjU5MzRiXkExMV5BbXA0XkFpbWRiLWV0cy10cmFuc2NvZGU@.mp4?Expires=1610254273&Signature=ktco3PIZePrst9OA4~uyMfwUnf~uGVmPDAoxcDJ4fKYqzyQbyOKKW6HTTqpNcog5342qyzKJBY3SXMXqbwYGtF6P-RF8mopQ8odvKiVoGbudIQ7dBjR4tPD38uR2uDUUyB1nc4iSPAgyfZLC4~e5AgVjk-AfLeo51mn0beOYokK-8lqBhnhUDt-Fqqj4Z0OJl65-8ihQ0PzY2iDCwPBZFI8R8g1Nr-AlUZpMJVOwa7K-QI2cIkVvzIlcxBc7P46OkVGyBWipTrXPJc4ECNkdPsSk9WxtpV-iwkGdaR2B8Y9CRJSqTIghnttvB3wZESfv7p2HFZXu1DIdlWF0n8vR6g__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+
+0:"/title/tt2948372/"
+1:"/title/tt7126948/"
+2:"/title/tt6723592/"
+3:"/title/tt9691136/"
+4:"/title/tt11161474/"
+5:"/title/tt0087538/"
+6:"/title/tt10539608/"
+7:"/title/tt9620292/"
+8:"/title/tt10600398/"
+9:"/title/tt0097647/"
+10:"/title/tt13061914/"
+11:"/title/tt0091326/"
+12:"/title/tt0451279/"
+13:"/title/tt10288566/"
+14:"/title/tt4154796/"
+15:"/title/tt10451914/"
+16:"/title/tt9770150/"
+17:"/title/tt8367814/"
+18:"/title/tt4566758/"
+19:"/title/tt10362466/"
+20:"/title/tt8633478/"
+21:"/title/tt10612922/"
+22:"/title/tt6751668/"
+23:"/title/tt5363618/"
+24:"/title/tt7737786/"
+25:"/title/tt6105098/"
+26:"/title/tt0068646/"
+27:"/title/tt8946378/"
+28:"/title/tt6475714/"
+29:"/title/tt10886166/"
+30:"/title/tt2850386/"
+31:"/title/tt10514222/"
+32:"/title/tt8579674/"
+33:"/title/tt0241527/"
+34:"/title/tt1401152/"
+35:"/title/tt6878306/"
+36:"/title/tt1160419/"
+37:"/title/tt1070874/"
+38:"/title/tt0111161/"
+39:"/title/tt0974661/"
+40:"/title/tt8829830/"
