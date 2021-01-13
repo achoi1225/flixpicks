@@ -149,7 +149,6 @@ def create_role(actors_data, imdb_id):
         image = ''
         if 'image' in actors_data[key]['charname'][0]:
             image = actors_data[key]['charname'][0]['image']['url']
-            # print(f"IMAGE!!!!! {image}")
 
         character = ", ".join(actors_data[key]['charname'][0]['characters'])
         actor = actors_data[key]['charname'][0]['name']

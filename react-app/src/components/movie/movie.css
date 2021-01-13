@@ -24,12 +24,12 @@
     width: 338px;
     background-size: contain;                    
     background-repeat:   no-repeat;
-    /* background-position: center center;  */
-    background-color: red;
+    background-position: center center; 
     transition: 0.2s ease;
     cursor: pointer;
     display: flex;
     align-items: flex-end;
+    background-color: black;
 }
 
 .movie-page__poster:hover {
@@ -48,14 +48,28 @@
 .fa-plus-circle {
     /* font-size: 2vw; */
     font-size: 32px;
-    top: 100px;
-    transition: 0.2s ease;
+    /* top: 100px; */
+    /* transition: 0.9s ease; */
 }
 
-.fa-plus-circle:hover {
-    font-size: 36px;
-    z-index: 1;
-    /* top: 0; */
+.fa-check-circle {
+    font-size: 32px;
+}
+
+/* .fa-plus-circle:hover {
+    animation-name: spin;
+    animation-duration: 300ms;
+    animation-iteration-count: inherit;
+    animation-timing-function: linear; 
+} */
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(90deg);
+    }
 }
 
 /* .fa-plus-circle::before,
@@ -68,7 +82,7 @@
 } */
 
 .movie-page__add-to-watchlist {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 10px;
     font-weight: 500;
     margin-left: 10px;
@@ -101,13 +115,14 @@
     grid-template-rows: auto; */
 }
 
-/* .movie-page__movie-photo {
-    min-width: 60px;
-    width: 100px;
-    background-size:     cover;                    
-    background-repeat:   no-repeat;
-    background-position: center center; 
-} */
+.movie-page__title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.movie-page__year {
+    font-weight: normal;
+}
 
 .movie-page__cast-container {
     width: 100%;

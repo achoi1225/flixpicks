@@ -31,9 +31,9 @@ class Movie(db.Model):
             "image": self.image,
             "description": self.description,
             "year": self.year,
-            "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
             "reviews": [review.to_dict_no_movie() for review in self.reviews],
             "roles": [role.to_dict_no_movie() for role in self.roles],
+            # "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
             # "trailer": self.trailer.to_dict(),
         }
 
@@ -45,7 +45,7 @@ class Movie(db.Model):
             "image": self.image,
             "description": self.description,
             "year": self.year,
-            "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
+            # "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
             "roles": [role.to_dict_no_movie() for role in self.roles],
             # "trailer": self.trailer.to_dict()
         }
@@ -58,9 +58,9 @@ class Movie(db.Model):
             "image": self.image,
             "description": self.description,
             "year": self.year,
-            "reviews": [review.to_dict_no_movie() for review in self.reviews],
-            "roles": [role.to_dict_no_movie() for role in self.roles],
-            "trailer": self.trailer.to_dict()
+            # "reviews": [review.to_dict_no_movie() for review in self.reviews],
+            # "roles": [role.to_dict_no_movie() for role in self.roles],
+            # "trailer": self.trailer.to_dict()
         }
 
     def to_dict_no_role(self):
@@ -72,6 +72,6 @@ class Movie(db.Model):
             "description": self.description,
             "year": self.year,
             "reviews": [review.to_dict_no_movie() for review in self.reviews],
-            "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
+            # "watchLists": [watchlist.to_dict_no_movie() for watchlist in self.watch_lists],
             # "trailer": self.trailer.to_dict()
         }

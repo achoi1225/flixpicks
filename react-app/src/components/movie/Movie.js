@@ -6,14 +6,10 @@ import './movie.css'
 import ReviewForm from '../reviews/ReviewForm'
 import {getMovie, getCast15} from '../../services/movie'
 import {getReviews} from '../../services/review'
+import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist'
 // import {getArtists} from '../../services/artists'
 
 const Movie = ({ user }) => {
-    // const [movieId, setMovieId] = useState(0)
-    // const [genres, setGenres] = useState([]);
-    // const [plotSummary, setPlotSummary] = useState("");
-    // const [moviePhotos, setMoviePhotos] = useState("");
-
     // const imdbId = "tt0848228";
     // const imdbId = "tt0091326";
     // const imdbId = "tt10539608";
@@ -21,6 +17,8 @@ const Movie = ({ user }) => {
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState(null);
     const [reviews, setReviews] = useState(null);
+    const [watchlist, setWatchlist] = useState(null);
+    const [isInWatchlist, setIsInWatchlist] = useState(false);
 
 
 
@@ -30,18 +28,43 @@ const Movie = ({ user }) => {
             const movie = await getMovie(imdbId);
             setMovie(movie)
             
-            console.log("movies", movie)
-
+            // console.log("movies", movie)
+            const cast = await getCast15(imdbId);
+            setCast(cast.roles)
             // const reviews = await getReviews(imdbId)
             // setReviews(movie.reviews)
             // console.log("TRAILER!!!!! ", movie)
-        })()
-    }, [imdbId]);
 
-    // const updateRating = (e) => {
-    //     console.log("RATING!!! ", e.target.value)
-    //     setRating(e.target.value)
-    // }
+            // const watchlistMovies = movie.watchLists[0];
+            // for (const movie of watchlistMovies) {
+            //     console.log(movie);
+            // }
+            // console.log(watchlistMovies)
+            const userWatchlist = await getWatchlist(user.id)
+            setWatchlist(userWatchlist);
+            for(const obj of userWatchlist.movies) {
+                console.log(obj);
+                if (obj.imdbMovieId === imdbId) {
+                    setIsInWatchlist(true);
+                }
+            }
+        })()
+    }, [imdbId, user.id]);
+
+    const addToWatchlist = (e) => {
+        (async () => {
+            const updatedWatchlist = await addMovie(user.id, imdbId);
+            setIsInWatchlist(true);
+        })()
+    }
+
+     const removeFromWatchlist = (e) => {
+        (async () => {
+            const updatedWatchlist = await removeMovie(user.id, imdbId);
+            console.log("REMOVED!!!!!! ", updatedWatchlist);
+            setIsInWatchlist(false)
+        })()
+    }
 
     if(!movie) {
         return null;
@@ -52,7 +75,10 @@ const Movie = ({ user }) => {
             <div className="movie-page__top-container">
                 <div className="movie-page__poster" style={{ backgroundImage: `url(${ movie.image })`}} >
                     <div className="movie-page__info-container ">
-                            <div className="fas fa-plus-circle" data-tooltop="add to watch list"></div> 
+                            {isInWatchlist ? 
+                                <div className="fas fa-check-circle" data-tooltop="remove from watch list" onClick={removeFromWatchlist}></div> :
+                                <div className="fas fa-plus-circle" data-tooltop="add to watch list" onClick={addToWatchlist}></div> 
+                            }
                             <div className="movie-page__add-to-watchlist">
                                 add the watch list
                             </div>
@@ -71,17 +97,14 @@ const Movie = ({ user }) => {
                 </div> 
             </div>
             <div className="movie-page__content-container">
-                <div className="">
-                    { movie.title } <span>{ movie.year }</span>
+                <div className="movie-page__title">
+                    { movie.title } <span className="movie-page__year">({ movie.year })</span>
                 </div>
                 <div className="movie-page__plot">
                     { movie.description }
                 </div>
-                <div className="movie-page__photos">
-                    {/* {moviePhotos && 
-
-                    } */}
-                </div>
+                {/* <div className="movie-page__photos">
+                </div> */}
                 <div className="movie-page__cast-container">
                     {cast && cast.map((a, idx) => {
                         return(
@@ -126,15 +149,6 @@ const Movie = ({ user }) => {
                             </div>
                         )
                     })}
-                    {/* <div className="review">
-                        asdf
-                    </div>
-                    <div className="review">
-                        asdf
-                    </div>
-                    <div className="review">
-                        asdf
-                    </div> */}
                 </div>
             </div>
         </div>

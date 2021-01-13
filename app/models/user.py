@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     about = db.Column(db.Text, nullable = True)
 
     reviews = relationship('Review', back_populates='user', order_by='asc(Review.id)')
+    watch_list = relationship('WatchList', backref="user", uselist=False)
     # followed_users = relationship('Follow', back_populates='followed_user', order_by='asc(Follow.id)')
     # follower_users = relationship('Follow', back_populates='follower_user', order_by='asc(Follow.id)')
 

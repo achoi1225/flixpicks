@@ -2,7 +2,8 @@ from app.models import db, Movie, WatchList
 
 
 def seed_watchlist():
-    movies = Movie.query.filter(Movie.id.in_([1,2])).all()
+    # movies = Movie.query.filter(Movie.id.in_([1,2])).all()
+    movies = Movie.query.filter(Movie.imdb_movie_id.in_(['tt123456', 'tt0091326'])).all()
     watchlist = WatchList(
         user_id = 1
     )

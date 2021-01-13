@@ -5,7 +5,8 @@ from . import db
 # Base = declarative_base()
 
 movies_watchlist = Table('movies_watchlist', db.Model.metadata,
-    db.Column('movie_id', db.Integer, db.ForeignKey('movies.id')),
+    # db.Column('movie_id', db.Integer, db.ForeignKey('movies.id')),
+    db.Column('imdb_id', db.String, db.ForeignKey('movies.imdb_movie_id')),
     db.Column('watchlist_id', db.Integer, db.ForeignKey('watchLists.id'))
 )
 
@@ -21,7 +22,6 @@ class WatchList(db.Model):
         return {
             "id": self.id,
             "userId": self.user_id,
-            # "movieId": self.movie_id,
             "movies": [movie.to_dict_no_watchlist() for movie in self.movies],
         }
 
@@ -29,5 +29,5 @@ class WatchList(db.Model):
         return {
             "id": self.id,
             "userId": self.user_id,
-            # "movieId": self.movie_id,
+            "movies": [movie.to_dict_no_watchlist() for movie in self.movies],
         }
