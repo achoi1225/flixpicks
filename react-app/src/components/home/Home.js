@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './home.css'
 import { getMostPopularMovies, getBestPictureMovies, getComingSoonMovies } from '../../services/movie'
 
@@ -10,6 +11,7 @@ const Home = ({
                 comingSoonMovies,
                 setComingSoonMovies }) => {
     // const [songs, setSongs] = useState(false)
+    let history = useHistory();
 
     useEffect(() => {
         (async () => {
@@ -26,6 +28,10 @@ const Home = ({
     // if(!mostPopularMovies) {
     //     return null;
     // }
+    const reroute = (e) => {
+        console.log("CLICKED!", e.target.id);
+        history.push(`/movie/${e.target.id}`)
+    }
 
     const createCarousel = () => {
         const sections = [];
@@ -41,8 +47,8 @@ const Home = ({
             }
             for(let count = 0; count < 6; count++) {
                 cards.push(
-                    <div className="item" key={`${mostPopularMovies[movieIdx].id}`} style={{ backgroundImage: `url(${mostPopularMovies[movieIdx].image})`}}>
-                    </div>
+                        <div className="item" onClick={reroute} id={`${mostPopularMovies[movieIdx].imdbMovieId}`} key={`${mostPopularMovies[movieIdx].id}`} style={{ backgroundImage: `url(${mostPopularMovies[movieIdx].image})`}}>
+                        </div>
                 )
                 movieIdx ++;
                 if (movieIdx === mostPopularMovies.length) break;
@@ -62,7 +68,7 @@ const Home = ({
                 {mostPopularMovies ? createCarousel() : null}
             </div>
 
-            <h1>Best Picture</h1>
+            {/* <h1>Best Picture</h1>
             <div className="category-container">
                 {bestPictureMovies && bestPictureMovies.map(movie => {
                     return (
@@ -75,7 +81,29 @@ const Home = ({
                         </div>
                     )
                 })}
-            </div>
+            </div> */}
+            <div className="category-container">asdfsadf</div>
+
+            <div className="category-container">asdfsadf</div>
+
+                {/* <h1>Best Picture</h1>
+            <div className="category-container">
+                {bestPictureMovies && bestPictureMovies.map(movie => {
+                    return (
+                        <div key={movie.id} className="card-container">
+                            <div className="poster" style={{ backgroundImage: `url(${ movie.image })`}}>
+                                <div className="title-container">
+                                    <div className="movie-title">{movie.title}</div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div> */}
+
+
+
+            
         </div>
     );
 };
