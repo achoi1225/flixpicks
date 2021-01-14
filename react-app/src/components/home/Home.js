@@ -30,24 +30,28 @@ const Home = ({
     const createCarousel = () => {
         const sections = [];
         const sectionNum = Math.floor(mostPopularMovies.length/6) + 1;
-        let i = 0;
-        // for(let j = 0; j < sectionNum; j++) {
-        //     let cardCount = 0
-        //     for(i; i < mostPopularMovies.length; i++) {
-        //         if(i === 0) {
-        //             const cards = [<a href="#section{sectionNum}" class="arrow__btn">‹</a>];
-        //         } else {
-        //             const cards = [<a href="#section{j}" class="arrow__btn">‹</a>];
-        //         }
-        //         cards.push(
-        //             <div className="item" style={{ backgroundImage: `url(${mostPopularMovies[i].image})`}}>
-        //             </div>
-        //         )
-        //         if(cardCount )
-        //     }
-        //     sections.push(<section id="section{j+1}">{cards}</section>)
-        // }
-        // return cards;
+                   console.log("sectionNUM!!!! ", sectionNum)
+        let movieIdx = 0;
+        for(let j = 0; j < sectionNum; j++) {
+            const cards = [];
+            if(j === 0) {
+                cards.push(<a href={`#section${sectionNum}`} className="arrow__btn">‹</a>);
+            } else {
+                cards.push(<a href={`#section${j}`} className="arrow__btn">‹</a>);
+            }
+            for(let count = 0; count < 6; count++) {
+                cards.push(
+                    <div className="item" key={`${mostPopularMovies[movieIdx].id}`} style={{ backgroundImage: `url(${mostPopularMovies[movieIdx].image})`}}>
+                    </div>
+                )
+                movieIdx ++;
+                if (movieIdx === mostPopularMovies.length) break;
+            }
+            cards.push(<a href={`#section${j+2}`} className="arrow__btn">›</a>)
+            sections.push(<section key={`${j+1}`} id={`section${j+1}`}>{cards}</section>)
+        }
+        return sections;
+        // console.log("SECTIONS!!! ", sections)
 
 
         // <section id="section1">
@@ -94,10 +98,8 @@ const Home = ({
     return (
         <div className="main-content">
             <h1>Most Popular</h1>
-            <div class="wrapper">
-                <section id="section1">
-                    {mostPopularMovies ? createCarousel() : null}
-                </section>
+            <div className="wrapper">
+                {mostPopularMovies ? createCarousel() : null}
             </div>
 
             {/* <div className="category-container">

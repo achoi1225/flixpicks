@@ -16,11 +16,12 @@
 
 .wrapper {
     width: 100%;
-    position: relative;
+    height: auto;
     display: grid;
     grid-template-columns: repeat(3, 100%);
     overflow: hidden;
     scroll-behavior: smooth;
+    background-color: red;
 }
 .wrapper section {
   width: 100%;
@@ -28,15 +29,18 @@
   display: grid;
   grid-template-columns: repeat(6, auto);
   margin: 20px 0;
+  padding-left: 3%;
+  /* padding-left: 2%; */
   /* column-gap: 2%; */
   background-color: aqua;
 }
 .wrapper section .item {
     width: 100%;
-    padding-top: 50%;
+    padding-top: 120%;
     transition: 250ms all;
     background-repeat:   no-repeat;
     background-size: contain;  
+    cursor: pointer;
 }
 .wrapper section .item:hover {
   /* margin: 0 100px; */
