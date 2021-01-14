@@ -4,6 +4,7 @@ import Iframe from 'react-iframe'
 import { useParams } from 'react-router-dom';
 import './movie.css'
 import ReviewForm from '../reviews/ReviewForm'
+import Reviews from '../reviews/Reviews'
 import {getMovie, getCast15} from '../../services/movie'
 import {getReviews} from '../../services/review'
 import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist'
@@ -27,12 +28,12 @@ const Movie = ({ user }) => {
             // const movie = await getMovie("tt0848228");
             const movie = await getMovie(imdbId);
             setMovie(movie)
+            setReviews(movie.reviews)
             
-            // console.log("movies", movie)
+            console.log("movies", movie)
             const cast = await getCast15(imdbId);
             setCast(cast.roles)
             // const reviews = await getReviews(imdbId)
-            // setReviews(movie.reviews)
             // console.log("TRAILER!!!!! ", movie)
 
             // const watchlistMovies = movie.watchLists[0];
@@ -103,8 +104,6 @@ const Movie = ({ user }) => {
                 <div className="movie-page__plot">
                     { movie.description }
                 </div>
-                {/* <div className="movie-page__photos">
-                </div> */}
                 <div className="movie-page__cast-container">
                     {cast && cast.map((a, idx) => {
                         return(
@@ -124,31 +123,7 @@ const Movie = ({ user }) => {
                     <ReviewForm user={user} imdbId={imdbId} setReviews={setReviews} getReviews={getReviews}/>
                 </div>
                 <div className="reviews__container">
-                    {reviews && reviews.map(review => {
-                        return (
-                            <div key={review.id} className="review">
-                                <div className="review__name-stars-container">
-                                    <div className="review__name">{review.user.username}</div>
-                                    {/* <div className="review__stars">
-                                        <input type="radio" onClick={updateRating} name="rate" id="rate-5" />
-                                        <label htmlFor="rate-5" className="fas fa-star"></label>
-                                        <input type="radio" name="rate" id="rate-4" />
-                                        <label htmlFor="rate-4" className="fas fa-star"></label>
-                                        <input type="radio" name="rate" id="rate-3" />
-                                        <label htmlFor="rate-3" className="fas fa-star"></label>
-                                        <input type="radio" name="rate" id="rate-2" />
-                                        <label htmlFor="rate-2" className="fas fa-star"></label>
-                                        <input type="radio" name="rate" id="rate-1" />
-                                        <label htmlFor="rate-1" className="fas fa-star"></label>
-                                    </div> */}
-                                </div>
-                                <div className="review__content">
-                                    {review.content}
-                                </div>
-                                <div className="review__date">{review.created_at}</div>
-                            </div>
-                        )
-                    })}
+                    <Reviews reviews={reviews} />
                 </div>
             </div>
         </div>

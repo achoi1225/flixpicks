@@ -45,6 +45,7 @@
     -webkit-text-fill-color: transparent;
     margin-right: 2px;
     transition: all 0.3s;
+    cursor: pointer;
 }   
 
 /* .review__stars input:not(checked) ~ label:hover{
@@ -52,8 +53,8 @@
     color: #fd4;
 } */
 
-input:not(checked) ~ label:hover,
-input:not(checked) ~ label:hover ~ label{
+.review__stars input:not(checked) ~ label:hover,
+.review__stars input:not(checked) ~ label:hover ~ label{
     background: -webkit-linear-gradient(90deg, #946a2e 0%, #e6ad5b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -61,7 +62,7 @@ input:not(checked) ~ label:hover ~ label{
     /* color: #fd4; */
 }
 
-input:checked ~ label{
+.review__stars input:checked ~ label{
     background: -webkit-linear-gradient(90deg, #946a2e 0%, #e6ad5b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
