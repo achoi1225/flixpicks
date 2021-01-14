@@ -19,7 +19,7 @@
     /* background-color: brown; */
 }
 
-.search_result .card-container {
+.search_result__card-container {
     width: 100%;
     margin: 0 auto;
     border-radius: 3px;
@@ -28,20 +28,20 @@
     /* background-color: #2b2a2a; */
 }
 
-.search_result .poster {
+.search_result__poster {
     width: 100%;
     padding-top: 149%;
     background-repeat:   no-repeat;
     background-size: contain;                    
 }
 
-.search_result .title-container {
+.search_result__title-container {
     padding-top: 5px;
     text-align: center;
     margin-top: -1px;
 }
 
-.search_result .movie-title {
+.search_result__movie-title {
     /* font-size: 19px; */
     font-size: 0.8vw;
     line-height: 1vw;
@@ -50,6 +50,6 @@
     /* text-align: center; */
 }
 
-.search_result .movie-link {
+.search_result__movie-link {
     text-decoration: none;
 }

@@ -55,3 +55,7 @@ https://imdb-video.media-imdb.com/vi2538013721/MV5BYjQ4NjcxMWEtMTk5ZS00ZWY3LTg2Y
 38:"/title/tt0111161/"
 39:"/title/tt0974661/"
 40:"/title/tt8829830/"
+
+THINGS TO DO:
+README
+CHANGE FAVICON AND title

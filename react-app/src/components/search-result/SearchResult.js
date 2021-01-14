@@ -35,12 +35,12 @@ export const SearchResult = () => {
             <div className="search_result">
                 {results && results.map(movie => {
                     return (
-                        <NavLink exact to={`/movie/${movie.id}`} className="movie-link">
-                            <div key={movie.id} className="card-container">
-                                <div className="poster" style={{ backgroundImage: `url(${ movie.image })`}}>
+                        <NavLink exact to={`/movie/${movie.id}`} className="search_result__movie-link">
+                            <div key={movie.id} className="search_result__card-container">
+                                <div className="search_result__poster" style={{ backgroundImage: `url(${ movie.image })`}}>
                                 </div>
-                                <div className="title-container">
-                                    <div className="movie-title">{movie.title}</div>
+                                <div className="search_result__title-container">
+                                    <div className="search_result__movie-title">{movie.title}</div>
                                 </div>
                             </div>
                         </NavLink>
