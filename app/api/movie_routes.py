@@ -278,7 +278,7 @@ def get_coming_soon():
         create_coming_soon_movies(coming_soon_list)
 
         print("SENDING BACK COMING SOON MOVIES!!!!")
-        # return get_coming_soon()
+        return get_coming_soon()
 
 # Helper function to create best picture movies
 def create_coming_soon_movies(movie_list):

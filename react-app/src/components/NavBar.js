@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
+import logo from '../static/film.png'
 import Search from './search/Search'
 
 const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
@@ -35,6 +36,7 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
       <nav className="nav-bar" >
         {/* <div className="logo"> */}
           <div className="home-link__container">
+            <img className="logo" src={logo} onClick={rerouteHome}/>
             <div className="home-link" onClick={rerouteHome}>
               flixpicks
             </div>

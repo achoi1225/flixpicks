@@ -28,7 +28,7 @@ const Movie = ({ user }) => {
             // const movie = await getMovie("tt0848228");
             const movie = await getMovie(imdbId);
             setMovie(movie)
-            setReviews(movie.reviews)
+            // setReviews(movie.reviews)
             
             console.log("movies", movie)
             const cast = await getCast15(imdbId);

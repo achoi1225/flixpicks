@@ -1,15 +1,109 @@
 
+.feature-1 {
+  width: 110%;
+  padding-top: 550px;
+  /* height: 550px; */
+  background-repeat:   no-repeat;
+  background-size: cover; 
+  background-image: url("../../static/ww01.jpg");
+  -moz-box-shadow:    inset 0 -12px 9px 1px #000000;
+  -webkit-box-shadow: inset 0 -12px 9px 1px #000000;
+  box-shadow:         inset 0 -12px 9px 1px #000000;  
+  background-color: black;
+  background-position: 0px 0px;
+  animation: animate-1 linear 60s infinite;
+  color: white;
+  z-index: 1;
+  position: relative;
+  /* animation-name: animate;
+  animation-duration: alternate-reverse;
+  animation-direction: 30s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-timing-function: ease-in-out; */
+}
+
+.feature-2 {
+  width: 115%;
+  padding-top: 550px;
+  background-repeat:   no-repeat;
+  background-size: cover; 
+  background-image: url("../../static/ww02.jpg");
+  -moz-box-shadow:    inset 0 -12px 9px 1px #000000;
+  -webkit-box-shadow: inset 0 -12px 9px 1px #000000;
+  box-shadow:         inset 0 -12px 9px 1px #000000;  
+  background-color: black;
+  background-position: 0px 0px;
+  animation: animate-2 linear 60s infinite;
+  color: white;
+  z-index: 1;
+  position: absolute;
+  animation-delay: 5s;
+  opacity: 0;
+}
+
+.feature-logo-container {
+  width: 100%;
+  position: absolute;
+}
+
+.ww-logo {
+  width: 20%;
+  padding-top: 100px;
+  background-repeat:   no-repeat;
+  background-size: cover; 
+  position: absolute;
+  z-index: 5;
+  margin: 2% 0 0 3%;
+}
+
+@keyframes animate-1{
+  0% {
+    width: 115%;
+    opacity: 1;
+  } 
+  30% {
+    opacity: 0;
+  } 
+  80% {
+    opacity: 0.5
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes animate-2{
+  0% {
+    width: 115%;
+    opacity: 0;
+  } 
+  30% {
+    opacity: 1;
+  } 
+  80% {
+    opacity: 0.5
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
 .main-content {
     width: 100%;
     /* height: 100vh; */
     padding: 0 50px;
-    margin: 40px 0 40px 0;
+    margin: 580px 0 40px 0;
     /* background-color: burlywood; */
 }
 
 .main-content h1 {
     color: white;
     font-size: 28px;
+    line-height: 24px;
     /* font-size: 1.4vw; */
     margin: 0 0 0 3%;
 }
@@ -22,6 +116,8 @@
     overflow: hidden;
     scroll-behavior: smooth; 
     position: sticky; 
+    margin: 0 0 40px 0;
+    color: white;
     /* background-color: red; */
 }
 
@@ -31,18 +127,24 @@
   display: grid;
   grid-template-columns: repeat(6, auto);
   padding: 0 0 0 0;
-  margin: 2% 0;
   padding-left: 3%;
+  margin: 2% 0;
   /* background-color: aqua; */
 }
 
 .wrapper section .item {
-    width: 100%;
+    width: 81%;
     padding-top: 120%;
     transition: 250ms all;
     background-repeat:   no-repeat;
     background-size: contain;  
     cursor: pointer;
+    border-radius: 3px;
+    overflow: hidden;
+    -moz-box-shadow:    inset 0 0 10px 1px #000000;
+    -webkit-box-shadow: inset 0 0 10px 1px #000000;
+    box-shadow:         inset 0 0 10px 1px #000000;      
+    /* background-color: red; */
 }
 
 .wrapper section .item:hover {
