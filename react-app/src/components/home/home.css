@@ -1,7 +1,7 @@
 
 .feature-1 {
   width: 110%;
-  padding-top: 550px;
+  padding-top: 730px;
   /* height: 550px; */
   background-repeat:   no-repeat;
   background-size: cover; 
@@ -14,19 +14,12 @@
   animation: animate-1 linear 60s infinite;
   color: white;
   z-index: 1;
-  position: relative;
-  /* animation-name: animate;
-  animation-duration: alternate-reverse;
-  animation-direction: 30s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-play-state: running;
-  animation-timing-function: ease-in-out; */
+  position: absolute;
 }
 
 .feature-2 {
   width: 115%;
-  padding-top: 550px;
+  padding-top: 730px;
   background-repeat:   no-repeat;
   background-size: cover; 
   background-image: url("../../static/ww02.jpg");
@@ -94,9 +87,11 @@
 
 .main-content {
     width: 100%;
+    position: absolute;
     /* height: 100vh; */
     padding: 0 50px;
-    margin: 580px 0 40px 0;
+    margin: 635px 0 40px 0;
+    z-index: 15;
     /* background-color: burlywood; */
 }
 
