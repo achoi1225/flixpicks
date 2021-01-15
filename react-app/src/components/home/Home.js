@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import './home.css'
 import wwLogo from '../../static/Daco_121609.png';
 import { getMostPopularMovies, getBestPictureMovies, getComingSoonMovies } from '../../services/movie'
@@ -45,22 +46,26 @@ const Home = ({
         for(let j = 0; j < sectionNum; j++) {
             const cards = [];
             if(j === 0) {
-                cards.push(<a href={`#${catName}${sectionNum}`} className="arrow__btn">‹</a>);
+                // cards.push(<a href={`#${catName}${sectionNum}`} className="arrow__btn">‹</a>);
+                // cards.push(<Link to={`#${catName}${sectionNum}`} className="arrow__btn">‹</Link>);
+                cards.push(<Link to={`#carousel_${catName}${sectionNum}`} className="arrow__btn">‹</Link>);
             } else {
-                cards.push(<a href={`#${catName}${j}`} className="arrow__btn">‹</a>);
+                // cards.push(<a href={`#${catName}${j}`} className="arrow__btn">‹</a>);
+                cards.push(<Link to={`#carousel_${catName}${j}`} className="arrow__btn">‹</Link>);
             }
             for(let count = 0; count < 6; count++) {
                 cards.push(
-                        <div className="item" onClick={reroute} id={`${category[movieIdx].imdbMovieId}`} key={`${category[movieIdx].id}`} style={{ backgroundImage: `url(${category[movieIdx].image})`}}>
+                        <div className="item" onClick={reroute} id={`${category[movieIdx].imdbMovieId}`} key={`${category[movieIdx].imdbMovieId}`} style={{ backgroundImage: `url(${category[movieIdx].image})`}}>
                         </div>
                 )
                 movieIdx ++;
                 if (movieIdx === category.length) break;
             }
             if(j+1 !== sectionNum) {
-                cards.push(<a href={`#${catName}${j+2}`} className="arrow__btn">›</a>)
+                // cards.push(<a href={`#${catName}${j+2}`} className="arrow__btn">›</a>)
+                cards.push(<Link to={`#carousel_${catName}${j+2}`} className="arrow__btn">›</Link>)
             }
-            sections.push(<section key={`${j+1}`} id={`${catName}${j+1}`}>{cards}</section>)
+            sections.push(<section key={`${j+1}`} id={`carousel_${catName}${j+1}`}>{cards}</section>)
         }
         return sections;
     }
@@ -80,7 +85,6 @@ const Home = ({
             <div className="wrapper">
                 {mostPopularMovies ? createCarousel(mostPopularMovies, 'mpm') : "Loading Most Popular Movies"}
             </div>
-
             <h1>Best Picture</h1>
             <div className="wrapper">
                 {bestPictureMovies ? createCarousel(bestPictureMovies, 'bpm') : "Loading Best Picture Movies"}

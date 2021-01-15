@@ -15,6 +15,7 @@
   color: white;
   z-index: 1;
   position: absolute;
+  margin-bottom: 100%;
 }
 
 .feature-2 {
@@ -88,7 +89,6 @@
 .main-content {
     width: 100%;
     position: absolute;
-    /* height: 100vh; */
     padding: 0 50px;
     margin: 635px 0 40px 0;
     z-index: 15;

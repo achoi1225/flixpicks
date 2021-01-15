@@ -4,19 +4,9 @@
     padding-left: 250px;
     color: #808080;
     /* position: relative; */
-    /* overflow: hidden; */
+    bottom: 0;
     width: 100%;
-}
-
-.about-nqg {
-    margin-top: 5px;
-    margin-left: 60px;
-    font-size: 20px;
-    min-width: 900px;
-}
-
-.about-nqg > p {
-    margin-top: 0px;
+    z-index: 99;
 }
 
 .title {
@@ -34,7 +24,7 @@
     bottom: 5px;
 }
 
-.developers > a {
+.developer > a {
     display: block;
     margin: 15px;
     color: white;
@@ -43,7 +33,7 @@
     text-decoration: none;
 }
 
-.developers > a:hover {
+.developer > a:hover {
     color: #55BCC4;
 }
 
