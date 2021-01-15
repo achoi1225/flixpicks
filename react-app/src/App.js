@@ -4,11 +4,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import SignUpForm from "./components/auth/SignUpForm";
 // import UsersList from "./components/UsersList";
 // import User from "./components/User";
-// import Footer from "./components/Footer";
 // import Song from "./components/songs/Song";
 // import Artist from "./components/artists/Artists";
 // import { user } from "./components/User"; 
 // import Player from "./components/audioPlayer/AudioPlayer"
+// import ReviewForm from "./components/reviews/ReviewForm"
 import NavBar from "./components/NavBar";
 import Home from "./components/home/Home";
 import SignUpPage from "./components/auth/SignUpPage";
@@ -17,8 +17,8 @@ import { authenticate } from "./services/auth";
 import Profile from "./components/profile/Profile";
 import './index.css'
 import Movie from "./components/movie/Movie"
-import ReviewForm from "./components/reviews/ReviewForm"
 import SearchResult from "./components/search-result/SearchResult"
+import Footer from "./components/Footer";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -52,7 +52,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <div className="wrapper"> */}
         <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} setUser={setUser} user={user}/>
         <Switch>
           <Route path="/sign-up" exact={true}>
@@ -77,12 +76,11 @@ function App() {
           <ProtectedRoute path="/movie/:imdbId" exact={true} authenticated={authenticated}>
             <Movie user={user}/>
           </ProtectedRoute>
-
           {/* <Route path="/review-form" exact={true}>
             <ReviewForm user={user}/>
           </Route> */}
-      </Switch>
-      {/* </div> */}
+        </Switch>
+        <Footer />
     </BrowserRouter>
   );
 }

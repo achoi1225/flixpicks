@@ -1,10 +1,8 @@
 .movie-page__container {
     /* width: 100%; */
     width: 1192px;
-    /* min-width: 500px; */
-    /* background-color: brown; */
     color: white;
-    margin: 0 auto;
+    margin: 60px auto 0 auto;
     /* padding: 0 9%; */
 }
 
@@ -16,7 +14,6 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: auto;
-    /* justify-content: center; */
 }
 
 .movie-page__poster {

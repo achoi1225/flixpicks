@@ -49,7 +49,8 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
               <LogoutButton setAuthenticated={setAuthenticated} setUser={setUser} />
               <button className="nav-button" onClick={rerouteProfile}>
               <div className="profileButton">
-                {<i className="fas fa-user-circle " ></i>}
+                {/* {<i className="fas fa-user-circle " ></i>} */}
+                <i className="fas fa-user-alt"></i>
               </div>
               </button>
             </>
