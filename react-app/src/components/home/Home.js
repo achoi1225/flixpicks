@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
-import './home.css'
+import './home.css';
+import FooterMovie from '../footer-movie/FooterMovie';
 import wwLogo from '../../static/Daco_121609.png';
 import { getMostPopularMovies, getBestPictureMovies, getComingSoonMovies } from '../../services/movie'
 
@@ -72,10 +73,12 @@ const Home = ({
 
     return (
         <>
-        <div className="feature-1">
+        <div className="feature-holder">
+            <div className="feature-1">
+            </div>
         </div>
-        <div className="feature-2">
-        </div>
+        {/* <div className="feature-2">
+        </div> */}
         <div className="feature-logo-container">
             <img className="ww-logo" src={wwLogo} />
         </div>
@@ -95,8 +98,7 @@ const Home = ({
                 {comingSoonMovies ? createCarousel(comingSoonMovies, 'csm') : "Loading Coming Soon Movies"}
             </div>
  
-
-                {/* <h1>Best Picture</h1>
+            {/* <h1>Best Picture</h1>
             <div className="category-container">
                 {bestPictureMovies && bestPictureMovies.map(movie => {
                     return (
@@ -110,7 +112,9 @@ const Home = ({
                     )
                 })}
             </div> */} 
+
         </div>
+        <FooterMovie />
         </>
     );
 };
