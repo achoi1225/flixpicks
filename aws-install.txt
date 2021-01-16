@@ -1,4 +1,0 @@
-pip install awscli
-pip install boto3
-
-
