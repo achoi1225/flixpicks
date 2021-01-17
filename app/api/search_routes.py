@@ -26,18 +26,17 @@ def search_imdb_api(search_input):
             if 'q' in result:
                 if result['q'] == 'feature':
                     image = ""
+                    starring = ""
                     if 'i' in result:
                         image = result['i']['imageUrl']
-
-                    # print(f"ID!!!!!!! {result['id']}")
-                    # print(f"TITLE!!!!!!! {result['l']}")
-                    # print(f"STARRING!!!!!!! {result['s']}")
+                    if 's' in result:
+                        starring = result['s']
                     
                     result_list.append({
                         'id': result['id'],
                         'title': result['l'],
                         'image': image,
-                        'starring': result['s'],
+                        'starring': starring
                     })
 
         results = dict({

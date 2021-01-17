@@ -103,8 +103,14 @@ def get_cast_15(imdb_id):
         return {"roles": [role.to_dict() for role in roles]}
     else:
         actors_id_list = get_cast_id_from_imdb(imdb_id)
-        actors_data = get_cast_data_from_imdb(actors_id_list, imdb_id)
-        create_role(actors_data, imdb_id)
+        if actors_id_list:
+            actors_data = get_cast_data_from_imdb(actors_id_list, imdb_id)
+            if actors_data:
+                create_role(actors_data, imdb_id)
+            else:
+                return {'errors': 'Cast for movie currently unavailable'}
+        else:
+            return {'errors': 'Cast for movie currently unavailable'}
 
         return get_cast_15(imdb_id)
 
@@ -118,15 +124,18 @@ def get_cast_id_from_imdb(imdb_id):
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
-    response = list(response.json())
     
-    actor_id_list = [el.split("/")[2] for el in response]
+    if response.ok:
+        response = list(response.json())
+        actor_id_list = [el.split("/")[2] for el in response]
+        return actor_id_list
+    else:
+        return None
 
     # for el in response:
     #     actorId = el.split("/")[2]
     #     actorIdList.append(actorId)
 
-    return actor_id_list
 
 # HELPER FUNCTION FOR GETTING CAST DATA WITH THE LIST PASSED IN
 def get_cast_data_from_imdb(actors_id_list, imdb_id):
@@ -142,7 +151,10 @@ def get_cast_data_from_imdb(actors_id_list, imdb_id):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    return dict(response.json())
+    if response.ok:
+        return dict(response.json())
+    else:
+        return None
 
 # CREATE ROLE
 # @movie_routes.route('/<int:id>/roles', methods=["POST"])
@@ -153,9 +165,10 @@ def create_role(actors_data, imdb_id):
         image = ''
         if 'image' in actors_data[key]['charname'][0]:
             image = actors_data[key]['charname'][0]['image']['url']
-
-        character = ", ".join(actors_data[key]['charname'][0]['characters'])
-        actor = actors_data[key]['charname'][0]['name']
+        if 'characters' in actors_data[key]['charname'][0]:
+            character = ", ".join(actors_data[key]['charname'][0]['characters'])
+        if 'name' in actors_data[key]['charname'][0]:
+            actor = actors_data[key]['charname'][0]['name']
 
         new_role = Role(
             imdb_id=imdb_id,

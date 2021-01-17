@@ -68,3 +68,12 @@
     -webkit-text-fill-color: transparent;
     /* color: #fd4; */
 }
+
+.review-form__button {
+    background-color: #E50914;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 8px;
+}

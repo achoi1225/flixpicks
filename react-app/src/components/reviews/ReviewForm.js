@@ -81,7 +81,7 @@ const ReviewForm = ({ user, imdbId, setReviews, getReviews }) => {
                 onChange={updateContent}
             />
         </form>
-        <button className="" type="button" onClick={reviewSubmitHandler}>Submit</button>
+        <button className="review-form__button" type="button" onClick={reviewSubmitHandler}>Submit</button>
         </>
   );
 };

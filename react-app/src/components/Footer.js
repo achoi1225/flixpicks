@@ -9,11 +9,14 @@ const Footer = () => {
 
     return (
         <div className="footer">
-            <div className="title">
-                flixpicks
+           <div className="footer__contact">
+                <a href="https://angel.co/u/andrew-choi-28" rel="noopener noreferrer" target="_blank"><i className="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/andrew-choi-340162201/" rel="noopener noreferrer" target="_blank"><i className="fab fa-github-square"></i></a>
+                <a href="https://angel.co/u/andrew-choi-28" rel="noopener noreferrer" target="_blank"><i className="fab fa-angellist"></i></a>
             </div>
-            <div className="developer">
-                <a href="https://github.com/achoi1225" target="_blank" rel="noopener noreferrer">Andrew Choi</a>
+            <div className="footer__developer">
+                <h3>Contact developer:</h3>
+                <a className="footer__developer-email" href="mailto:adc1225.dev@gmail.com" rel="noopener noreferrer" target="_blank">Andrew Choi</a>
             </div>
         </div>
     );

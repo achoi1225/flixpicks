@@ -7,7 +7,9 @@ import ReviewForm from '../reviews/ReviewForm'
 import Reviews from '../reviews/Reviews'
 import {getMovie, getCast15} from '../../services/movie'
 import {getReviews} from '../../services/review'
-import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist'
+import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist';
+import emptyProfile01 from '../../static/empty_profile01.jpeg';
+import emptyProfile02 from '../../static/empty_profile02.jpeg';
 // import {getArtists} from '../../services/artists'
 
 const Movie = ({ user }) => {
@@ -31,14 +33,13 @@ const Movie = ({ user }) => {
             console.log("movies", movie)
             if(!movie.errors) {
                 setMovie(movie)
-
+                const cast = await getCast15(imdbId);
+                setCast(cast.roles)
+                setReviews(movie.reviews)
             } else {
                 setErrors(movie.errors)
             }
-            // setReviews(movie.reviews)
             
-            // const cast = await getCast15(imdbId);
-            // setCast(cast.roles)
 
             // const reviews = await getReviews(imdbId)
             // console.log("TRAILER!!!!! ", movie)
@@ -100,7 +101,9 @@ const Movie = ({ user }) => {
                             className="movie-page__trailer"
                             // styles={{height: "25px"}}
                         /> :
-                        "Trailer unavailable =("
+                        <div className="trailer-unavailable">
+                            Trailer unavailable =(
+                        </div>
                     }
                 </div> 
             </div>
@@ -112,10 +115,13 @@ const Movie = ({ user }) => {
                     { movie.description }
                 </div>
                 <div className="movie-page__cast-container">
+                    <div className="movie-page__cast-header">
+                        Cast
+                    </div>
                     {cast && cast.map((a, idx) => {
                         return(
                             <div key={a.id} className="movie-page__actor-container">
-                                <img className="movie-page__actor-thumbnail" src={a.image}/>
+                                <img className="movie-page__actor-thumbnail" src={a.image !== '' ? a.image : emptyProfile01}/>
                                 <div className="movie-page__actor-name">
                                     {a.actor}
                                 </div>

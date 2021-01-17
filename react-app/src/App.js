@@ -71,7 +71,7 @@ function App() {
             <ReviewForm user={user}/>
           </Route> */}
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
     </BrowserRouter>
   );
 }

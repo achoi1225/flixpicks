@@ -59,7 +59,7 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
                       Signed in as:
                     </div>
                     <div className="username">{user.username}</div>
-                    <NavLink className="watchlist" to="/profile"><i class="fas fa-chevron-right"></i> watch list</NavLink>
+                    <NavLink className="watchlist" to="/profile"><i className="fas fa-chevron-right"></i> watch list</NavLink>
                   </div>  
                 }
               </button>
