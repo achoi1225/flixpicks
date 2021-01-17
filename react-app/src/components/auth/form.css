@@ -32,19 +32,15 @@ input {
 }
 
 button.signup{
-    white-space: nowrap;
-    background-color: black;
-    color: white;
     border: none;
-    padding: 5px 10px 5px 10px;
-    cursor: pointer;
+    border-radius: 3px;
+    background-color: #E50914;
     font-size: 25px;
-    border-radius: 2px;
-    margin: 10px;
-    margin-top: 7px;
-    margin-bottom: 7px;
-    height: 40px;
-    min-width: auto;
+    font-weight: 600;
+    color: white;
+    padding: 5px 20px;
+    /* width: 90px;
+    height: 30px; */
 }
 
 button:focus {

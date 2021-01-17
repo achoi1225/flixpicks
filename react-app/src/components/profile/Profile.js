@@ -1,17 +1,8 @@
 import React, { useState, useEffect, } from 'react';
 import './Profile.css';
-import {getAnnotations} from '../../services/annotation'
-import AnnotationList from './AnnotationList';
 
 
 const Profile = ({ user }) => {
-    const [annotation, setAnnotation] = useState(null)
-    useEffect( () => {
-        (async () => {
-            const res = await getAnnotations(user.id)
-            setAnnotation(res)
-        })()
-    },[user.id]);
   return (
       <div className="profilepage">
       <header className="profilepage-header">
@@ -26,12 +17,6 @@ const Profile = ({ user }) => {
         </div>
       </header>
       <div className="profilepage-content">
-        <section className="profilepage-lyrics">
-          <h1>Annotations</h1>
-        {annotation && annotation.annotations.map((annoInfo, idx) => (
-          <AnnotationList key={idx} annoInfo={annoInfo} idx={idx}/>
-        ))}
-        </section>
       </div>
       </div>
   )

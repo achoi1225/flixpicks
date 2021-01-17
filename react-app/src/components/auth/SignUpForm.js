@@ -47,7 +47,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setUser}) => {
       <form className="signup-form" onSubmit={onSignUp}>
         <div>
           {errors.map((error) => (
-            <div className="error-list">{error}</div>
+            <div className="form-errors">{error}</div>
           ))}
         </div>
         {/* <div className="form-inputs"> */}
@@ -85,7 +85,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setUser}) => {
               required={true}
             ></input>
           <div className="form-input">
-            <button type="submit">Sign Up</button>
+            <button className="signup" type="submit">Sign Up</button>
           </div>
         {/* </div> */}
       </form>

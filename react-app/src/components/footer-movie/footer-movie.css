@@ -3,18 +3,16 @@
     /* padding-top: 50px; */
     padding-left: 250px;
     color: #808080;
-    position: absolute;
-    bottom: -135%;
     width: 100%;
     height: 180px;
-    z-index: 99;
-    /* margin-top: 55%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: absolute;
+    z-index: 20;
+    margin-top: 105%;
     /* -moz-box-shadow:    0 -15px 10px 1px #141414;
-    -webkit-box-shadow: 0 -15px 10px 1px #141414;
-    box-shadow:         0 -15px 10px 1px #141414;   */
+    -webkit-box-shadow: 0 -15px 10px 1px #141414; */
 }
 
 .footer-movie__title {
