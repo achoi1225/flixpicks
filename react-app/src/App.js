@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import LoginForm from "./components/auth/LoginForm";
-// import SignUpForm from "./components/auth/SignUpForm";
-// import UsersList from "./components/UsersList";
-// import User from "./components/User";
-// import Song from "./components/songs/Song";
-// import Artist from "./components/artists/Artists";
-// import { user } from "./components/User"; 
-// import Player from "./components/audioPlayer/AudioPlayer"
-// import ReviewForm from "./components/reviews/ReviewForm"
 import NavBar from "./components/NavBar";
 import Home from "./components/home/Home";
 import SignUpPage from "./components/auth/SignUpPage";
