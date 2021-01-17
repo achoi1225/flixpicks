@@ -18,7 +18,6 @@ rapid_api_key = os.environ.get('RAPID_API_KEY')
 @movie_routes.route('/<id>', methods=["GET"])
 def get_one_movie(id):
     movie = Movie.query.filter_by(imdb_movie_id=id).first()
-
     if movie:
         movie = movie.to_dict()
         trailer = get_one_trailer(id)
@@ -34,12 +33,14 @@ def get_one_movie(id):
         # print(f"BEFORE GOING TO GET ONE TRAILER!!!")
         new_movie = create_movie(id, popular, best_picture, coming_soon)
 
-        trailer = get_one_trailer(id)
-    
-        new_movie['trailer'] = trailer
+        if new_movie:
+            trailer = get_one_trailer(id)
+            new_movie['trailer'] = trailer
 
-        print("MOVIE CREATED!!!")
-        return new_movie
+            print("MOVIE CREATED!!!")
+            return new_movie
+        else:
+            return {'errors': 'Details for this movie is currently unavailable' }
 
 # CREATE MOVIE
 # @movie_routes.route('/', methods=["POST"])
@@ -58,18 +59,21 @@ def create_movie(imdb_movie_id, popular, best_picture, coming_soon):
     # Check to see if key 'plotOutline' exists
     plotOutline = "* Plot not available *"
     image = "image unavailable"
+    year = None
 
     if 'plotOutline' in response:
         plotOutline = response['plotOutline']['text']
     if 'image' in response['title']:
         image = response['title']['image']['url']
+    if 'year' in response['title']:
+        year = response['title']['year']
 
     new_movie = Movie(
         imdb_movie_id=imdb_movie_id,
         title=response['title']['title'],
         image=image,
         description=plotOutline,
-        year=response['title']['year'],
+        year=year,
         popular=popular,
         best_picture=best_picture,
         coming_soon=coming_soon,
@@ -372,11 +376,12 @@ def get_one_trailer(imdb_id):
 
 # CREATE TRAILER
 def create_trailer(data, imdb_id):
-    print(f"DATA!!!!!!!!!!!!! {data['resource']['videos']}")
+    videos = ''
     trailer_id = ''
-    videos = data['resource']['videos'][0]
-    if videos['contentType'] == "Trailer":
-        trailer_id = videos['id'].split("/")[2]
+    if 'videos' in data['resource']:
+        videos = data['resource']['videos'][0]
+        if videos['contentType'] == "Trailer":
+            trailer_id = videos['id'].split("/")[2]
     
     trailer = Trailer(
         imdb_id=imdb_id,

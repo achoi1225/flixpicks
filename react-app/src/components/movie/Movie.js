@@ -15,6 +15,7 @@ const Movie = ({ user }) => {
     // const imdbId = "tt0091326";
     // const imdbId = "tt10539608";
     const { imdbId } = useParams();
+    const [errors, setErrors] = useState([]);
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState(null);
     const [reviews, setReviews] = useState(null);
@@ -25,22 +26,23 @@ const Movie = ({ user }) => {
 
     useEffect(() => {
         (async () => {
-            // const movie = await getMovie("tt0848228");
+
             const movie = await getMovie(imdbId);
-            setMovie(movie)
+            console.log("movies", movie)
+            if(!movie.errors) {
+                setMovie(movie)
+
+            } else {
+                setErrors(movie.errors)
+            }
             // setReviews(movie.reviews)
             
-            console.log("movies", movie)
-            const cast = await getCast15(imdbId);
-            setCast(cast.roles)
+            // const cast = await getCast15(imdbId);
+            // setCast(cast.roles)
+
             // const reviews = await getReviews(imdbId)
             // console.log("TRAILER!!!!! ", movie)
 
-            // const watchlistMovies = movie.watchLists[0];
-            // for (const movie of watchlistMovies) {
-            //     console.log(movie);
-            // }
-            // console.log(watchlistMovies)
             const userWatchlist = await getWatchlist(user.id)
             setWatchlist(userWatchlist);
             for(const obj of userWatchlist.movies) {
@@ -73,6 +75,11 @@ const Movie = ({ user }) => {
 
     return (
         <div className="movie-page__container">
+            <div className="movie-errors__container">
+                 {errors.map((error) => (
+                    <div className="movie-errors">{error}</div>
+                ))}
+            </div>
             <div className="movie-page__top-container">
                 <div className="movie-page__poster" style={{ backgroundImage: `url(${ movie.image })`}} >
                     <div className="movie-page__info-container ">
@@ -99,7 +106,7 @@ const Movie = ({ user }) => {
             </div>
             <div className="movie-page__content-container">
                 <div className="movie-page__title">
-                    { movie.title } <span className="movie-page__year">({ movie.year })</span>
+                    { movie.title } <span className="movie-page__year">{movie.year && (movie.year) }</span>
                 </div>
                 <div className="movie-page__plot">
                     { movie.description }

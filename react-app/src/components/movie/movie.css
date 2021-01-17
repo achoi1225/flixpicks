@@ -228,6 +228,16 @@
     text-align: right;
     
 }
+
+.movie-errors__container {
+    width: 100%;
+}
+
+.movie-errors {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
 /* .movie-page__plot {
 
 } */
