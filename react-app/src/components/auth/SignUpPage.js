@@ -9,16 +9,10 @@ import logo from '../../static/film.png'
 const SignUpPage = ({authenticated, setAuthenticated, setUser}) => {
   const [loginFormActive, setLoginFormActive] = useState(false);
   const videoRef = useRef();
+
   const setPlayBackSpeed = () => {
     videoRef.current.playbackRate = 0.5;
   };
-  //  useEffect(() => {
-  //       const vidBg = document.getElementById("videoBg");
-  //       const slowPlay = () => {
-  //         vidBg,playbackRate = 0.5;
-  //       }
-  //       slowPlay();
-  //   }, []);
 
   const signInHandler = (e) => {
     setLoginFormActive(true);
@@ -39,8 +33,7 @@ const SignUpPage = ({authenticated, setAuthenticated, setUser}) => {
       loop 
       muted
       ref={videoRef}
-      onCanPlay={() => setPlayBackSpeed()}
-      playbackRate={speed} >
+      onCanPlay={() => setPlayBackSpeed()} >
         <source src={signupBg} type="video/mp4"/>
     </video>
     <div className="signup-page__container">

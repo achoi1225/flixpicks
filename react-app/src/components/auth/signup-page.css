@@ -4,18 +4,17 @@
     position: absolute;
     z-index: 9;
     padding: 0 50px 50px 50px;
-    -moz-box-shadow:    inset 0 60px 70px #000000;
-    -webkit-box-shadow: inset 0 60px 70px #000000;
-    box-shadow:         inset 0 60px 70px #000000;
+    -moz-box-shadow:    inset 0 200px 220px #000000;
+    -webkit-box-shadow: inset 0 200px 220px #000000;
+    box-shadow:         inset 0 200px 220px #000000;
     /* background-color: white; */
 }
 
 .signup__bg-container {
     width: 100%;
-    /* height: 300px; */
+    height: 100vh;
+    object-fit: cover;
     position: absolute;
-    /* background-color: antiquewhite; */
-    /* z-index: 9; */
 }
 
 .color-overlay {
@@ -23,7 +22,7 @@
     height: 100vh;
     position: absolute;
     background-color: black;
-    opacity: 0.3;
+    opacity: 0.4;
     z-index: 5;
 }
 
@@ -32,7 +31,6 @@
     height: 130px;
     display: flex;
     align-items: center;
-    /* background-color: bisque; */
 }
 
 .signup__logo-container {
@@ -53,6 +51,7 @@
     -webkit-filter: brightness(100);
     /* background-color: #E50914; */
 }
+
 button.signin {
     border: none;
     border-radius: 3px;
@@ -63,12 +62,16 @@ button.signin {
     height: 30px;
 }
 
+button.signin:hover {
+    border: 2px solid white;
+}
+
 .signup__mid-content {
     width: 100%;
     text-align: center;
     padding: 0 30%;
-    margin-top: 110px;
-    background-color: cadetblue;
+    /* margin-top: 110px; */
+    margin-top: 5%;
 }
 
 .signup__mid-content h1 {

@@ -37,10 +37,11 @@ const LoginForm = ({authenticated, setLoginFormActive, setAuthenticated, setUser
 
   return (
     <div className="form-container">
+      <h1 className="login-header">Sign In</h1>
       <form className="" onSubmit={onLogin}>
-        <div>
+        <div className="form-errors__container">
           {errors.map((error) => (
-            <div className="error-list">{error}</div>
+            <div className="form-errors">{error}</div>
           ))}
         </div>
               {/* <label htmlFor="email">Email</label> */}
@@ -59,11 +60,11 @@ const LoginForm = ({authenticated, setLoginFormActive, setAuthenticated, setUser
               value={password}
               onChange={updatePassword}
               />
-            <button type="submit">Login</button>
+            <button className="login" type="submit">Login</button>
       </form> 
       <div className="login-signup-now">
             New to FlixPicks?  
-            <button onClick={signupHandler}>Sign up now</button>
+            <button className="signup-now" onClick={signupHandler}>Sign up now</button>
       </div>
     </div>
   );

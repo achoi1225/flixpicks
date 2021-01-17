@@ -5,10 +5,10 @@
     box-sizing: border-box;
 }
 
-#root {
+/* #root {
     min-width: 360px;
     max-width: 100%;
-}
+} */
 
 main {
     padding: 0px;
@@ -74,10 +74,13 @@ button {
     cursor: pointer;
 }
 
+.form-errors__container {
+    margin-bottom: 15px;
+}
+
 .form-errors {
     color: red;
     font-size: 14px;
     font-weight: bold;
-    margin-bottom: 15px;
 }
 
