@@ -46,8 +46,7 @@ export const SearchResult = () => {
                         </NavLink>
                     )
                 })}
-            </div>
-            
+            </div>         
         </div>
     )
 }
