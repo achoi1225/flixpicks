@@ -5,10 +5,10 @@ def seed_reviews():
 
     objects = [ 
         Review(
-            content="Was this supposed to be a movie?",
+            content="One of my top ten favorites!",
             user_id=2,
-            imdb_id="tt123456",
-            stars=1
+            imdb_id="tt0338013",
+            stars=5
         ),
         Review(
             content="Mercy is for the weak. We do not train to be merciful here. Man face you he is enemy. Enemy deserve no mercy... HONK!",

@@ -14,8 +14,6 @@ import emptyProfile02 from '../../static/empty_profile02.jpeg';
 
 const Movie = ({ user }) => {
     // const imdbId = "tt0848228";
-    // const imdbId = "tt0091326";
-    // const imdbId = "tt10539608";
     const { imdbId } = useParams();
     const [errors, setErrors] = useState([]);
     const [movie, setMovie] = useState(null);
@@ -24,11 +22,8 @@ const Movie = ({ user }) => {
     const [watchlist, setWatchlist] = useState(null);
     const [isInWatchlist, setIsInWatchlist] = useState(false);
 
-
-
     useEffect(() => {
         (async () => {
-
             const movie = await getMovie(imdbId);
             console.log("movies", movie)
             if(!movie.errors) {
@@ -40,10 +35,6 @@ const Movie = ({ user }) => {
                 setErrors(movie.errors)
             }
             
-
-            // const reviews = await getReviews(imdbId)
-            // console.log("TRAILER!!!!! ", movie)
-
             const userWatchlist = await getWatchlist(user.id)
             setWatchlist(userWatchlist);
             for(const obj of userWatchlist.movies) {
@@ -109,7 +100,7 @@ const Movie = ({ user }) => {
             </div>
             <div className="movie-page__content-container">
                 <div className="movie-page__title">
-                    { movie.title } <span className="movie-page__year">{movie.year && (movie.year) }</span>
+                    { movie.title } <span className="movie-page__year">{movie.year && `(${movie.year})`}</span>
                 </div>
                 <div className="movie-page__plot">
                     { movie.description }

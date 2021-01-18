@@ -20,21 +20,18 @@ const Home = ({
         (async () => {
             const mpm = await getMostPopularMovies();
             setMostPopularMovies(mpm.most_popular)
-            console.log("MOST POPULAR MOVIES!!! ", mpm)
+            // console.log("MOST POPULAR MOVIES!!! ", mpm)
 
             const bp = await getBestPictureMovies();
             setBestPictureMovies(bp.best_picture)
-            console.log("BEST PICTURE MOVIES!!! ", bp)
+            // console.log("BEST PICTURE MOVIES!!! ", bp)
 
             const cs = await getComingSoonMovies();
             setComingSoonMovies(cs.coming_soon)
-            console.log("COMING SOON MOVIES!!! ", bp)
+            // console.log("COMING SOON MOVIES!!! ", bp)
         })()
     }, [setMostPopularMovies, setBestPictureMovies, setComingSoonMovies]);
 
-    // if(!mostPopularMovies) {
-    //     return null;
-    // }
     const reroute = (e) => {
         history.push(`/movie/${e.target.id}`)
     }

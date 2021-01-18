@@ -1,53 +1,77 @@
+.profilepage {
+    width: 100%;
+    margin-top: 60px;
+    min-height: 100vh;
+}
+
 .profilepage-header {
-      padding: 30px;
+      padding: 30px 100px;
       display: flex;
-      padding-left: 150px;
-      padding-right: 150px;
-      border-bottom: solid 2px #E561B3;
-      color: black;
-      font-family: rubik;
-      /* background-image: url('../../static/background.gif') */
+      border-bottom: solid 1px #808080;
+      /* background-color: red; */
+      /* color: black; */
+}
+
+.profilepage__header-container {
+    width: 100%;
+    display: flex;
 }
 
 .profilepage-title {
-    font-size: 50px;
+    font-size: 1.5vw;
+    /* font-size: 22px; */
 }
 
 .profilepage-email {
-    font-size: 30px;
+    font-size: 1.5vw;
+    /* font-size: 22px; */
 }
 
 .profilepage-image {
+    width: 7%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 200px;
-    background-color: #E561B3;
-    border: solid 3px white;
+    background-color: white;
     padding: 10px;
     object-fit: cover;
-    object-position: 50% 20%;
+    border-radius: 3px;
+}
+
+.fa-user-circle {
+    font-size: 5vw;
 }
 
 .profilepage-info {
-    padding-left: 10px;
+    padding: 0 0 0 15px;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: red; */
 }
 
+.profilepage-info span {
+    font-weight: normal;
+    color: #828282;
+}
 
 .profilepage-content {
-    display: flex;
-    align-items: stretch;
-    padding: 20px;
-    padding-left: 100px;
-    flex: 0 0 50%;
-    position: relative;
-    color:black;
-    font-family: Raleway,
-    arial,
-    sanserif;
+    width: 100%;
+    padding: 20px 100px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: auto;
+    column-gap: 2%;
+    row-gap: 4%;
+}
+
+.profilepage h2 {
     font-size: 20px;
-    min-width: 500px;
+    color: white;
+    margin: 20px 0 0 100px; 
+    /* background-color: red; */
 }
 
 .profilepage-lyrics {
@@ -62,18 +86,6 @@
     flex: 0 0 50%;
 }
 
-.profilepage-annotation.active {
-    display: block;
-}
-
-.profilepage-sidelinks {
-    display: none;
-}
-
-.profilepage-annotation:not(.active)~.profilepage-sidelinks {
-    display: flex;
-    flex-direction: column;
-}
 
 
 

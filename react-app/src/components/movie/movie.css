@@ -3,7 +3,7 @@
     width: 1192px;
     color: white;
     margin: 60px auto 0 auto;
-    /* padding: 0 9%; */
+    min-height: 100vh;
 }
 
 .movie-page__top-container {
@@ -126,6 +126,7 @@
 
 .movie-page__year {
     font-weight: normal;
+    font-size: 25px;
 }
 
 .movie-page__cast-container {
@@ -254,10 +255,8 @@
 }
 
 .movie-page__plot {
-    width: 100%;
+    width: 55%;
     margin-top: 5px;
-    padding-right: 300px;
-    /* background-color: red; */
 }
 
 /* .movie-page__starring {

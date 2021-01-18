@@ -5,7 +5,7 @@ import './NavBar.css'
 import logo from '../static/film.png'
 import Search from './search/Search'
 
-const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
+const NavBar = ({ setAuthenticated, authenticated, setUser, user, setIsLoggingIn}) => {
   const [lastSearch, setLastSearch] = useState('')
   const [menuIsShown, setMenuIsShown] = useState(false)
   const location = useLocation();
@@ -24,9 +24,15 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
       history.push("/")
     }
     
-    const rerouteRegister = () => {
+    const rerouteSignup = () => {
       history.push("/sign-up")
     }
+
+    const rerouteLogin = () => {
+      setIsLoggingIn(true)
+      history.push("/sign-up")
+    }
+
     const rerouteProfile = () => {
       history.push("/profile")
     }
@@ -66,8 +72,8 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user }) => {
             </>
             :
             <>
-              <button className="nav-button" onClick={rerouteRegister}>Sign up</button>
-              <button className="nav-button" onClick={rerouteRegister}>Log in</button>
+              <button className="nav-button" onClick={rerouteSignup}>Sign up</button>
+              <button className="nav-button" onClick={rerouteLogin}>Log in</button>
             </>
           }
         </div>

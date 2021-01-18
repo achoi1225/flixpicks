@@ -5,11 +5,11 @@ def seed_movies():
 
     test_movie = Movie(
         # id=1,
-        imdb_movie_id='tt123456',
-        title="THE TEST",
-        image='https://nqg-images.s3.amazonaws.com/Taylor_Swift-01.png',
-        description="about a capstone project gone awry",
-        year=1997
+        imdb_movie_id='tt0338013',
+        title="Eternal Sunshine of the Spotless Mind",
+        image='https://m.media-amazon.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1_UX182_CR0,0,182,268_AL_.jpg',
+        description="When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories.",
+        year=2004
     )
 
     karate_kid = Movie(

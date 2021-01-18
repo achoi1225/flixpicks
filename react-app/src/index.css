@@ -37,15 +37,6 @@ input:focus {
     border: none;
 }
 
-.footer {
-    font-family: Rubik;
-}
-
-.footer,
-.push {
-    height: 250px;
-}
-
 input:focus {
     border: none;
     outline: none;

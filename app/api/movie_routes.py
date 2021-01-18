@@ -45,6 +45,7 @@ def get_one_movie(id):
 # CREATE MOVIE
 # @movie_routes.route('/', methods=["POST"])
 def create_movie(imdb_movie_id, popular, best_picture, coming_soon):
+    
     url = "https://imdb8.p.rapidapi.com/title/get-overview-details"
     querystring = {"tconst": imdb_movie_id, "currentCountry": "US"}
     headers = {

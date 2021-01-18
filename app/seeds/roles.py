@@ -3,18 +3,18 @@ from app.models import db, Role
 def seed_roles():
 
     objects = [
-      Role(
-        imdb_id="tt123456",
-        character="Pojo, PJ",
-        actor="Brad Git",
-        image="https://m.media-amazon.com/images/M/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_UX214_CR0,0,214,317_AL_.jpg",
-      ),
-      Role(
-          imdb_id="tt123456",
-          character="Pip",
-          actor="Unknown Actor",
-          image="https://m.media-amazon.com/images/M/MV5BMTM4MDk3OTYxOF5BMl5BanBnXkFtZTcwMDk5OTUwOQ@@._V1_UY317_CR9,0,214,317_AL_.jpg",
-      ),
+    #   Role(
+    #     imdb_id="tt123456",
+    #     character="Pojo, PJ",
+    #     actor="Brad Git",
+    #     image="https://m.media-amazon.com/images/M/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_UX214_CR0,0,214,317_AL_.jpg",
+    #   ),
+    #   Role(
+    #       imdb_id="tt123456",
+    #       character="Pip",
+    #       actor="Unknown Actor",
+    #       image="https://m.media-amazon.com/images/M/MV5BMTM4MDk3OTYxOF5BMl5BanBnXkFtZTcwMDk5OTUwOQ@@._V1_UY317_CR9,0,214,317_AL_.jpg",
+    #   ),
 
       Role(
           imdb_id="tt0091326",

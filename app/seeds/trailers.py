@@ -5,8 +5,8 @@ from app.models import db, Trailer
 def seed_trailers():
 
     trailer0 = Trailer(
-        imdb_id='tt123456',
-        trailer_id='vi2720317721',
+        imdb_id='tt0338013',
+        trailer_id='vi2292515097',
     )
 
     trailer1 = Trailer(

@@ -18,6 +18,7 @@ function App() {
   const [mostPopularMovies, setMostPopularMovies] = useState(null);
   const [bestPictureMovies, setBestPictureMovies] = useState(null);
   const [comingSoonMovies, setComingSoonMovies] = useState(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -43,11 +44,20 @@ function App() {
 
   return (
     <BrowserRouter>
-        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} setUser={setUser} user={user}/>
+        <NavBar 
+          setAuthenticated={setAuthenticated} 
+          authenticated={authenticated} 
+          setUser={setUser} user={user} 
+          setIsLoggingIn={setIsLoggingIn}/>
         <Switch>
           <Route path="/sign-up" exact={true}>
               {/* <LoginForm authenticated={authenticated} active={active} setAuthenticated={setAuthenticated} setUser={setUser} /> */}
-              <SignUpPage authenticated={authenticated} setAuthenticated={setAuthenticated}  setUser={setUser}/>
+              <SignUpPage 
+                authenticated={authenticated} 
+                setAuthenticated={setAuthenticated}  
+                setUser={setUser}
+                isLoggingIn={isLoggingIn}
+                setIsLoggingIn={setIsLoggingIn}/>
           </Route>
           <ProtectedRoute path="/profile" exact={true} authenticated={authenticated}>
               <Profile user={user} />

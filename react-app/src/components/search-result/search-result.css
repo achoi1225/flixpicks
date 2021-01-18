@@ -1,12 +1,10 @@
 .search-result__container {
     width: 100%;
-    /* height: 100vh; */
+    min-height: 100vh;
     /* margin-top: 60px; */
     padding: 0 50px ;
     margin: 100px 0 40px 0;
-    /* background-color: burlywood; */
     color: white;
-    /* background-color: white; */
 }
 
 .search-result__container h1 {

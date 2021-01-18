@@ -6,8 +6,8 @@ import './signup-page.css'
 import signupBg from '../../static/splash-bg.mp4';
 import logo from '../../static/film.png'
 
-const SignUpPage = ({authenticated, setAuthenticated, setUser}) => {
-  const [loginFormActive, setLoginFormActive] = useState(false);
+const SignUpPage = ({authenticated, setAuthenticated, setUser, isLoggingIn, setIsLoggingIn}) => {
+  // const [loginFormActive, setLoginFormActive] = useState(false);
   const videoRef = useRef();
 
   const setPlayBackSpeed = () => {
@@ -15,7 +15,7 @@ const SignUpPage = ({authenticated, setAuthenticated, setUser}) => {
   };
 
   const signInHandler = (e) => {
-    setLoginFormActive(true);
+    setIsLoggingIn(true);
   }
 
   if (authenticated) {
@@ -47,13 +47,13 @@ const SignUpPage = ({authenticated, setAuthenticated, setUser}) => {
             </button>
         </div>
         <div className="signup__mid-content">
-            {!loginFormActive ? 
+            {!isLoggingIn ? 
                 <>
                     <h1>If it's a movie, we have the details right here</h1>
                     <h2 className="signup-now">Sign up now!</h2>
                     <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated}  setUser={setUser}/>
                 </> :
-                <LoginForm setLoginFormActive={setLoginFormActive} setAuthenticated={setAuthenticated}  setUser={setUser}/>
+                <LoginForm setAuthenticated={setAuthenticated}  setUser={setUser}/>
             }
         </div> 
     </div>
