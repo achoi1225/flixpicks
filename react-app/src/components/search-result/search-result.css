@@ -36,7 +36,9 @@
     width: 100%;
     padding-top: 149%;
     background-repeat:   no-repeat;
-    background-size: contain;                    
+    background-size: contain;    
+    position: relative;   
+    cursor: pointer;            
 }
 
 .search_result__title-container {

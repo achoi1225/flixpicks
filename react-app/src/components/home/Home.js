@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 import './home.css';
@@ -53,7 +53,11 @@ const Home = ({
             }
             for(let count = 0; count < 6; count++) {
                 cards.push(
-                        <div className="item" onClick={reroute} id={`${category[movieIdx].imdbMovieId}`} key={`${category[movieIdx].imdbMovieId}`} style={{ backgroundImage: `url(${category[movieIdx].image})`}}>
+                        <div className="item" 
+                            onClick={reroute} 
+                            id={`${category[movieIdx].imdbMovieId}`} 
+                            key={`${category[movieIdx].imdbMovieId}`} 
+                            style={{ backgroundImage: `url(${category[movieIdx].image})`}}>
                         </div>
                 )
                 movieIdx ++;
@@ -77,7 +81,7 @@ const Home = ({
         {/* <div className="feature-2">
         </div> */}
         <div className="feature-logo-container">
-            <img className="ww-logo" src={wwLogo} />
+            <img className="ww-logo" src={wwLogo} alt="wonderwoman-logo"/>
         </div>
 
         <div className="main-content">

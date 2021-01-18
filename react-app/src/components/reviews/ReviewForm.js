@@ -1,36 +1,25 @@
-import React, { useState, useEffect } from "react";
-import {useHistory} from 'react-router-dom'
+import React, { useState } from "react";
 import { createReview } from '../../services/review'
 import './review-form.css';
 
 const ReviewForm = ({ user, imdbId, setReviews, getReviews }) => {
     const [errors, setErrors] = useState([]);
     const [content, setContent] = useState("");
-    const [userId, setUserId] = useState("");
-    // const [imdbId, setImdbId] = useState(0);
-    // const [stars, setStars] = useState(4);
-    const [rating, setRating] = useState(null)
-
-    //   useEffect(() => {
-    //     if(user) {
-    //         setUserId(user.id)
-    //     }
-    //     // (async () => {
-    //     // })()
-    //     console.log("USER ID! ", userId)
-    //   }, [user]);
-
-    //   let history = useHistory();
+    const [rating, setRating] = useState(null);
+    // const [isChecked, setIsChecked] = useState(true);
   
     const reviewSubmitHandler = async (e) => {
         e.preventDefault();
         if(!rating) {
             setErrors(["Please rate this movie"])
         } else {
-            const newReview = await createReview(content, user.id, imdbId, rating);
+            await createReview(content, user.id, imdbId, rating);
             const reviews = await getReviews(imdbId)
             console.log("REVIEWS!!!", reviews);
             setReviews(reviews.reviews);
+            setErrors([]);
+            setContent("");
+            setRating(null);
         }
     };
 
@@ -42,7 +31,7 @@ const ReviewForm = ({ user, imdbId, setReviews, getReviews }) => {
 
     const updateRating = (e) => {
         console.log("RATING!!! ", e.target.id)
-        setRating(parseInt(e.target.id))
+        setRating(parseInt(e.target.id));
         e.stopPropagation();
     }
 
@@ -62,9 +51,9 @@ const ReviewForm = ({ user, imdbId, setReviews, getReviews }) => {
             <div className="review-form__label-rating-container">
                 <label htmlFor="content" className="review-form__label">Add a review</label>
                 <div className="review__stars">
-                    <input type="radio" onClick={updateRating} name="rate" id="5" defaultChecked />
+                    <input type="radio" onClick={updateRating} name="rate" id="5"  defaultChecked/>
                     <label htmlFor="5" className="fas fa-star"></label>
-                    <input type="radio" onClick={updateRating} name="rate" id="4"/>
+                    <input type="radio" onClick={updateRating} name="rate" id="4" />
                     <label htmlFor="4" className="fas fa-star"></label>
                     <input type="radio" onClick={updateRating} name="rate" id="3"/>
                     <label htmlFor="3" className="fas fa-star"></label>

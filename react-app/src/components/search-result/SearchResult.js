@@ -18,7 +18,7 @@ export const SearchResult = () => {
                 setErrors(results.errors)
             }
         })()
-    }, []);
+    }, [searchInput]);
 
     return (
         <div className="search-result__container">

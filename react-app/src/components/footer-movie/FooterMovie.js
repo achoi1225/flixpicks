@@ -19,7 +19,4 @@ const FooterMovie = () => {
     );
 };
 
-{/* <i class="fab fa-linkedin"></i> */}
-{/* <i class="fab fa-github-square"></i>
-<i class="fab fa-angellist"></i> */}
 export default FooterMovie;

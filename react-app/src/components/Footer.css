@@ -21,16 +21,15 @@
 
 .footer__contact {
     display: flex;
-    width: 8%;
+    width: 100%;
     font-size: 40px;
     line-height: 38px;
-    justify-content: space-between;
     /* background-color: aqua; */
 }
 
 .footer__contact a {
     color: #808080;
-
+    margin-right: 10px;
 }
 
 .footer__contact a .fa-angellist {

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { searchMovie } from '../../services/search'
+import { useHistory } from 'react-router-dom';
+// import { searchMovie } from '../../services/search'
 import './Search.css'
 
 const Search = ({clearSearch, lastSearch, setLastSearch}) => {
-  const [results, setResults] = useState([]);
-  const [doingSearch, setDoingSearch] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [noResultsMsg, setNoResultsMessage] = useState(false)
   const history = useHistory();
 
   const rerouteSearchResults = () => {

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import ReactPlayer from 'react-player';
 import Iframe from 'react-iframe'
 import { useParams } from 'react-router-dom';
 import './movie.css'
@@ -10,16 +9,16 @@ import {getReviews} from '../../services/review'
 import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist';
 import emptyProfile01 from '../../static/empty_profile01.jpeg';
 import emptyProfile02 from '../../static/empty_profile02.jpeg';
-// import {getArtists} from '../../services/artists'
+
 
 const Movie = ({ user }) => {
     // const imdbId = "tt0848228";
+    // const [watchlist, setWatchlist] = useState(null);
     const { imdbId } = useParams();
     const [errors, setErrors] = useState([]);
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState(null);
     const [reviews, setReviews] = useState(null);
-    const [watchlist, setWatchlist] = useState(null);
     const [isInWatchlist, setIsInWatchlist] = useState(false);
 
     useEffect(() => {
@@ -36,9 +35,8 @@ const Movie = ({ user }) => {
             }
             
             const userWatchlist = await getWatchlist(user.id)
-            setWatchlist(userWatchlist);
+            // setWatchlist(userWatchlist);
             for(const obj of userWatchlist.movies) {
-                console.log(obj);
                 if (obj.imdbMovieId === imdbId) {
                     setIsInWatchlist(true);
                 }
@@ -48,16 +46,15 @@ const Movie = ({ user }) => {
 
     const addToWatchlist = (e) => {
         (async () => {
-            const updatedWatchlist = await addMovie(user.id, imdbId);
+            await addMovie(user.id, imdbId);
             setIsInWatchlist(true);
         })()
     }
 
      const removeFromWatchlist = (e) => {
         (async () => {
-            const updatedWatchlist = await removeMovie(user.id, imdbId);
-            console.log("REMOVED!!!!!! ", updatedWatchlist);
-            setIsInWatchlist(false)
+            await removeMovie(user.id, imdbId);
+            setIsInWatchlist(false);
         })()
     }
 

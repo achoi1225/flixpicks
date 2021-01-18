@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Redirect } from 'react-router-dom';
 import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
@@ -22,7 +22,6 @@ const SignUpPage = ({authenticated, setAuthenticated, setUser, isLoggingIn, setI
     return <Redirect to="/" />;
   }
 
-  const speed = 1;
   return (
     <>
     <div className="color-overlay"></div>
@@ -39,7 +38,7 @@ const SignUpPage = ({authenticated, setAuthenticated, setUser, isLoggingIn, setI
     <div className="signup-page__container">
         <div className="signup__top-row">
             <div className="signup__logo-container">
-                <img className="signup__logo" src={logo}/>
+                <img className="signup__logo" src={logo} alt="signup"/>
                 flixpicks
             </div>
             <button className="signin" onClick={signInHandler}>

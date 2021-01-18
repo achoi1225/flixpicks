@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useLocation, NavLink } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import logo from '../static/film.png'
@@ -10,11 +10,8 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user, setIsLoggingIn
   const [menuIsShown, setMenuIsShown] = useState(false)
   const location = useLocation();
 
-    const clearSearch = (e) => {
-      const target = e.target;
-      
+    const clearSearch = (e) => {      
       const searchInput = document.getElementById('search');
-      console.log("clicked on nav!!", searchInput.value)
       searchInput.value = null;
       document.getElementById('search-results').style.display = null;
     }
@@ -42,7 +39,7 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user, setIsLoggingIn
     return (
       <nav className="nav-bar" >
           <div className="home-link__container">
-            <img className="logo" src={logo} onClick={rerouteHome}/>
+            <img className="logo" src={logo} onClick={rerouteHome} alt="flixpicks-logo"/>
             <div className="home-link" onClick={rerouteHome}>
               flixpicks
             </div>
@@ -65,7 +62,13 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user, setIsLoggingIn
                       Signed in as:
                     </div>
                     <div className="username">{user.username}</div>
-                    <NavLink className="watchlist" to="/profile"><i className="fas fa-chevron-right"></i> watch list</NavLink>
+                    {/* <NavLink className="watchlist" to="/profile"><i className="fas fa-chevron-right"></i> watch list</NavLink> */}
+                    <div className="watchlist" 
+                      to="/profile"
+                      onClick={rerouteProfile}>
+                        {/* <i className="fas fa-chevron-right"></i>  */}
+                        watch list
+                    </div>
                   </div>  
                 }
               </button>

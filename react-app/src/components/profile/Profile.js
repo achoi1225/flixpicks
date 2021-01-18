@@ -14,7 +14,7 @@ const Profile = ({ user }) => {
           console.log("WATCHLIST!!!! ", watchlist)
           setWatchList(watchlist.movies)
         })()
-    }, []);
+    }, [user.id]);
 
   return (
       <div className="profilepage">
@@ -37,15 +37,18 @@ const Profile = ({ user }) => {
       <div className="profilepage-content">
           {watchList && watchList.map(movie => {
               return (
-                  <NavLink key={movie.imdbMovieId} exact to={`/movie/${movie.id}`} className="search_result__movie-link">
+                  // <NavLink key={movie.imdbMovieId} exact to={`/movie/${movie.imdbMovieId}`} className="search_result__movie-link">
                       <div className="search_result__card-container">
                           <div className="search_result__poster" style={{ backgroundImage: `url(${ movie.image })`}}>
+                              <div className="card-options">
+                                    add to watchlist
+                              </div>
                           </div>
                           <div className="search_result__title-container">
                               <div className="search_result__movie-title">{movie.title}</div>
                           </div>
                       </div>
-                  </NavLink>
+                  // </NavLink> 
               )
           })}      
       </div>
