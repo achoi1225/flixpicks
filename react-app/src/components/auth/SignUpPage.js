@@ -48,7 +48,7 @@ const SignUpPage = ({authenticated, setAuthenticated, setUser, isLoggingIn, setI
         <div className="signup__mid-content">
             {!isLoggingIn ? 
                 <>
-                    <h1>If it's a movie, we have the details right here</h1>
+                    <h1>Love movies? <br /> We have the details right here</h1>
                     <h2 className="signup-now">Sign up now!</h2>
                     <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated}  setUser={setUser}/>
                 </> :
