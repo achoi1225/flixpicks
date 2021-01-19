@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../services/auth";
 import './form.css'
 
-const LoginForm = ({authenticated, setLoginFormActive, setAuthenticated, setUser }) => {
+const LoginForm = ({ setAuthenticated, setUser, setIsLoggingIn }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,8 @@ const LoginForm = ({authenticated, setLoginFormActive, setAuthenticated, setUser
   };
 
   const signupHandler = (e) => {
-    setLoginFormActive(false)
+    // setLoginFormActive(false)
+    setIsLoggingIn(false);
   }
 
   // if (authenticated) {

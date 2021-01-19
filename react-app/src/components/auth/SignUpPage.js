@@ -52,7 +52,7 @@ const SignUpPage = ({authenticated, setAuthenticated, setUser, isLoggingIn, setI
                     <h2 className="signup-now">Sign up now!</h2>
                     <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated}  setUser={setUser}/>
                 </> :
-                <LoginForm setAuthenticated={setAuthenticated}  setUser={setUser}/>
+                <LoginForm setAuthenticated={setAuthenticated}  setUser={setUser} isLoggingIn={isLoggingIn} setIsLoggingIn={setIsLoggingIn}/>
             }
         </div> 
     </div>
