@@ -4,6 +4,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import './home.css';
 import FooterMovie from '../footer-movie/FooterMovie';
 import wwLogo from '../../static/Daco_121609.png';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { getMostPopularMovies, getBestPictureMovies, getComingSoonMovies } from '../../services/movie'
 
 const Home = ({ 
@@ -85,16 +86,23 @@ const Home = ({
         <div className="main-content">
             <h1>Most Popular</h1>
             <div className="wrapper">
-                {mostPopularMovies ? createCarousel(mostPopularMovies, 'mpm') : "Loading Most Popular Movies"}
+                {/* {mostPopularMovies ? createCarousel(mostPopularMovies, 'mpm') : <CircularProgress/>} */}
+                {mostPopularMovies ?  
+                    <div className="progress-container">
+                        Loading Most Popular Movies...
+                        <CircularProgress color="secondary"/>
+                    </div> : 
+                    null
+                }
             </div>
             <h1>Best Picture</h1>
             <div className="wrapper">
-                {bestPictureMovies ? createCarousel(bestPictureMovies, 'bpm') : "Loading Best Picture Movies"}
+                {bestPictureMovies ? createCarousel(bestPictureMovies, 'bpm') : <CircularProgress/>}
             </div>
 
             <h1>Coming Soon</h1>
             <div className="wrapper">
-                {comingSoonMovies ? createCarousel(comingSoonMovies, 'csm') : "Loading Coming Soon Movies"}
+                {comingSoonMovies ? createCarousel(comingSoonMovies, 'csm') : <CircularProgress/>}
             </div>
  
             {/* <h1>Best Picture</h1>
