@@ -13,7 +13,6 @@ const Home = ({
                 setBestPictureMovies, 
                 comingSoonMovies,
                 setComingSoonMovies }) => {
-    // const [songs, setSongs] = useState(false)
     let history = useHistory();
 
     useEffect(() => {
@@ -39,7 +38,6 @@ const Home = ({
     const createCarousel = (category, catName) => {
         const sections = [];
         const sectionNum = Math.floor(category.length/6) + 1;
-                   console.log("sectionNUM!!!! ", sectionNum)
         let movieIdx = 0;
         for(let j = 0; j < sectionNum; j++) {
             const cards = [];

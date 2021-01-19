@@ -29,54 +29,73 @@
     background-color: black;
 }
 
-.movie-page__poster:hover {
+/* .movie-page__poster:hover {
     box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2);
-}
+} */
 
 .movie-page__info-container {
-    width: 338px;
-    /* background-color: black; */
+    width: 100%;
     background: rgb(27, 27, 27, 0.6);
-    padding: 10px 10px;
-    display: flex;
-    align-items: center;
+    padding: 6px 10px 4px 10px;
+    /* background-color: blue; */
 }
 
-.fa-plus-circle {
+.movie-page__info-container .fa-plus-circle {
     /* font-size: 2vw; */
-    font-size: 32px;
-    /* top: 100px; */
-    /* transition: 0.9s ease; */
+    font-size: 36px;
+    cursor: pointer;
 }
 
-.fa-check-circle {
-    font-size: 32px;
+
+/* DATA TOOL TIP : Should be moved to index.css  *********************************************** */
+.watchlist-icon__container {
+    position: relative;
+    font-size: 36px;
+    cursor: pointer;
+    margin: 0;
 }
 
-/* .fa-plus-circle:hover {
-    animation-name: spin;
-    animation-duration: 300ms;
-    animation-iteration-count: inherit;
-    animation-timing-function: linear; 
-} */
-
-@keyframes spin {
-    from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(90deg);
-    }
-}
-
-/* .fa-plus-circle::before,
-.fa-plus-circle::after {
+.watchlist-icon__container::before,
+.watchlist-icon__container::after {
+    --scale: 0;
+    --tooltip-color:  white;
+    --arrow-size: 6px;
     position: absolute;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    top:18%;
+    left: 15%;
+    transform: translateX(var(--translate-x, 0)) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: left;
+    color: black;
+}
+
+.watchlist-icon__container::before {
     content: attr(data-tooltip);
-    height: 100px;
-    width: 100px;
-    background: red;
-} */
+    height: 30px;
+    /* width: 200px; */
+    width: max-content;
+    box-sizing: border-box;
+    padding: 6px 10px;
+    border-radius: 3px;
+    background-color: var(--tooltip-color);
+}
+
+.watchlist-icon__container:hover::before,
+.watchlist-icon__container:hover::after {
+    --scale: 1;
+}
+
+.watchlist-icon__container::after {
+    --translate-x: calc(-3* var(--arrow-size));
+    --translate-y: calc(0.8* var(--arrow-size));
+    content:'';
+    border: 10px solid transparent;
+    border-right-color: var(--tooltip-color);
+    transform-origin: right center;
+}
+/* ************************************************************************************************* */
 
 .movie-page__add-to-watchlist {
     font-size: 15px;

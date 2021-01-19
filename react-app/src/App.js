@@ -77,9 +77,6 @@ function App() {
           <ProtectedRoute path="/movie/:imdbId" exact={true} authenticated={authenticated}>
             <Movie user={user}/>
           </ProtectedRoute>
-          {/* <Route path="/review-form" exact={true}>
-            <ReviewForm user={user}/>
-          </Route> */}
         </Switch>
         <Footer />
     </BrowserRouter>

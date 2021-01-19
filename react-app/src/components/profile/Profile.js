@@ -1,20 +1,54 @@
 import React, { useState, useEffect, } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './Profile.css';
 import '../search-result/search-result.css';
-import { getWatchlist } from '../../services/watchlist';
-
+import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist';
 
 const Profile = ({ user }) => {
   const [watchList, setWatchList] = useState(null);
+  const [isInWatchlist, setIsInWatchlist] = useState(true);
+  let history = useHistory();
 
   useEffect(() => {
         (async () => {
           const watchlist = await getWatchlist(user.id);
           console.log("WATCHLIST!!!! ", watchlist)
-          setWatchList(watchlist.movies)
+          setWatchList(watchlist.movies);
         })()
     }, [user.id]);
+
+  // const addToWatchlist = (e) => {
+  //       (async () => {
+  //           await addMovie(user.id, imdbId);
+  //           setIsInWatchlist(true);
+  //       })()
+  //   }
+
+     const removeFromWatchlist = (e) => {
+        (async () => {
+            await removeMovie(user.id, e.target.id);
+            const updatedWatchlist = await getWatchlist(user.id);
+            setWatchList(updatedWatchlist.movies);
+        })()
+    }
+
+    const showOptions = (id) => {
+      const options = document.getElementById(`options-${id}`);
+      const play = document.getElementById(`play-${id}`);
+      options.style.display = 'block';
+      play.style.display = 'block';
+    }
+
+    const hideOptions = (id) => {
+      const options = document.getElementById(`options-${id}`);
+      const play = document.getElementById(`play-${id}`);
+      options.style.display = 'none';
+      play.style.display = 'none';
+    }
+
+    const rerouteMovie = (id) => {
+      history.push(`movie/${id}`);
+    }
 
   return (
       <div className="profilepage">
@@ -38,10 +72,17 @@ const Profile = ({ user }) => {
           {watchList && watchList.map(movie => {
               return (
                   // <NavLink key={movie.imdbMovieId} exact to={`/movie/${movie.imdbMovieId}`} className="search_result__movie-link">
-                      <div className="search_result__card-container">
+                      <div key={movie.imdbMovieId} className="search_result__card-container" 
+                        onMouseEnter={() => showOptions(movie.imdbMovieId)}
+                        onMouseLeave={() => hideOptions(movie.imdbMovieId)}>
                           <div className="search_result__poster" style={{ backgroundImage: `url(${ movie.image })`}}>
-                              <div className="card-options">
-                                    add to watchlist
+                              <div className="play" 
+                                id={`play-${movie.imdbMovieId}`}
+                                onClick={() => rerouteMovie(movie.imdbMovieId)}>
+                                  <i className="fas fa-play"></i>
+                              </div>
+                              <div className="card-options" id={`options-${movie.imdbMovieId}`}>
+                                  <div className="fas fa-check-circle" id={movie.imdbMovieId} data-tooltop="remove from watch list" onClick={removeFromWatchlist}></div> 
                               </div>
                           </div>
                           <div className="search_result__title-container">

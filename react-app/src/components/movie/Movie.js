@@ -73,12 +73,13 @@ const Movie = ({ user }) => {
                 <div className="movie-page__poster" style={{ backgroundImage: `url(${ movie.image })`}} >
                     <div className="movie-page__info-container ">
                             {isInWatchlist ? 
-                                <div className="fas fa-check-circle" data-tooltop="remove from watch list" onClick={removeFromWatchlist}></div> :
-                                <div className="fas fa-plus-circle" data-tooltop="add to watch list" onClick={addToWatchlist}></div> 
+                                <div className="watchlist-icon__container" data-tooltip="remove from watch list">
+                                    <div className="fas fa-check-circle" onClick={removeFromWatchlist}></div> 
+                                </div> :
+                                <div className="watchlist-icon__container" data-tooltip="add to watch list">
+                                    <div className="fas fa-plus-circle" onClick={addToWatchlist}></div> 
+                                </div>
                             }
-                            <div className="movie-page__add-to-watchlist">
-                                add the watch list
-                            </div>
                     </div>
                 </div>
                 <div className="movie-page__trailer-container">
