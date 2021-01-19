@@ -84,25 +84,33 @@ const Home = ({
         </div>
 
         <div className="main-content">
-            <h1>Most Popular</h1>
+            <h1>{mostPopularMovies && 'Most Popular'}</h1>
             <div className="wrapper">
-                {/* {mostPopularMovies ? createCarousel(mostPopularMovies, 'mpm') : <CircularProgress/>} */}
-                {mostPopularMovies ?  
+                {mostPopularMovies ? createCarousel(mostPopularMovies, 'mpm') : 
                     <div className="progress-container">
-                        Loading Most Popular Movies...
+                        Loading 'Most Popular' list...
                         <CircularProgress color="secondary"/>
-                    </div> : 
-                    null
+                    </div> 
                 }
             </div>
-            <h1>Best Picture</h1>
+            <h1>{bestPictureMovies && 'Best Picture'}</h1>
             <div className="wrapper">
-                {bestPictureMovies ? createCarousel(bestPictureMovies, 'bpm') : <CircularProgress/>}
+                {bestPictureMovies ? createCarousel(bestPictureMovies, 'bpm') : 
+                    <div className="progress-container">
+                        Loading 'Best Picture' list...
+                        <CircularProgress color="secondary"/>
+                    </div> 
+                }
             </div>
 
-            <h1>Coming Soon</h1>
+            <h1>{comingSoonMovies && 'Coming Soon'}</h1>
             <div className="wrapper">
-                {comingSoonMovies ? createCarousel(comingSoonMovies, 'csm') : <CircularProgress/>}
+                {comingSoonMovies ? createCarousel(comingSoonMovies, 'csm') : 
+                    <div className="progress-container">
+                        Loading 'Coming Soon' list...
+                        <CircularProgress color="secondary"/>
+                    </div> 
+                }
             </div>
  
             {/* <h1>Best Picture</h1>

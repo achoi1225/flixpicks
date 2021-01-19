@@ -23,16 +23,14 @@
 
 .footer-movie__contact {
     display: flex;
-    width: 8%;
+    width: 100%;
     font-size: 40px;
     line-height: 38px;
-    justify-content: space-between;
-    /* background-color: aqua; */
 }
 
 .footer-movie__contact a {
     color: #808080;
-
+    margin-right: 10px;
 }
 
 .footer-movie__contact a .fa-angellist {
