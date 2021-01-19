@@ -2,17 +2,15 @@ import React, { useState, useEffect, } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Profile.css';
 import '../search-result/search-result.css';
-import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist';
+import { getWatchlist, removeMovie} from '../../services/watchlist';
 
 const Profile = ({ user }) => {
   const [watchList, setWatchList] = useState(null);
-  const [isInWatchlist, setIsInWatchlist] = useState(true);
   let history = useHistory();
 
   useEffect(() => {
         (async () => {
           const watchlist = await getWatchlist(user.id);
-          console.log("WATCHLIST!!!! ", watchlist)
           setWatchList(watchlist.movies);
         })()
     }, [user.id]);

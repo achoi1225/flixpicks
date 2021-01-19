@@ -13,7 +13,6 @@ export const SearchResult = () => {
             const results = await getSearchResults(searchInput)
             if(!results.errors) {
                 setResults(results.movies)
-                console.log("SEARCH RESULTS!!!! ", results.movies)
             } else {
                 setErrors(results.errors)
             }
@@ -49,8 +48,8 @@ export const SearchResult = () => {
             <div className="search_result">
                 {results && results.map(movie => {
                     return (
-                        <NavLink exact to={`/movie/${movie.id}`} className="search_result__movie-link">
-                            <div key={movie.id} className="search_result__card-container"
+                        <NavLink key={movie.id} exact to={`/movie/${movie.id}`} className="search_result__movie-link">
+                            <div className="search_result__card-container"
                                 onMouseEnter={() => showOptions(movie.id)}
                                 onMouseLeave={() => hideOptions(movie.id)}>
                                 <div className="search_result__poster" style={{ backgroundImage: `url(${ movie.image })`}}>

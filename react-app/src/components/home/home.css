@@ -139,7 +139,7 @@
     overflow: hidden;
     -moz-box-shadow:    inset 0 0 10px 1px #000000;
     -webkit-box-shadow: inset 0 0 10px 1px #000000;
-    box-shadow:         inset 0 0 10px 1px #000000;      
+    box-shadow:         inset 0 0 10px 1px #000000;    
     /* background-color: red; */
 }
 
@@ -187,7 +187,7 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 0;
-  line-height: 25gpx;
+  line-height: 25px;
 }
 
 .category-container {

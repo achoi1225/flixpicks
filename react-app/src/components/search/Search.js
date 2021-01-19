@@ -12,7 +12,6 @@ const Search = ({clearSearch, lastSearch, setLastSearch}) => {
   }
 
   const updateInput = (e) => {
-    console.log(e.target.value)
     setInputValue(e.target.value)
   }
 

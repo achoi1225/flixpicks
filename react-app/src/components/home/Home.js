@@ -45,12 +45,13 @@ const Home = ({
             if(j === 0) {
                 // cards.push(<a href={`#${catName}${sectionNum}`} className="arrow__btn">‹</a>);
                 // cards.push(<Link to={`#${catName}${sectionNum}`} className="arrow__btn">‹</Link>);
-                cards.push(<Link to={`#carousel_${catName}${sectionNum}`} className="arrow__btn">‹</Link>);
+                cards.push(<Link key={`${catName}-${sectionNum}`} to={`#carousel_${catName}${sectionNum}`} className="arrow__btn">‹</Link>);
             } else {
                 // cards.push(<a href={`#${catName}${j}`} className="arrow__btn">‹</a>);
-                cards.push(<Link to={`#carousel_${catName}${j}`} className="arrow__btn">‹</Link>);
+                cards.push(<Link key={`${catName}-${j}`} to={`#carousel_${catName}${j}`} className="arrow__btn">‹</Link>);
             }
             for(let count = 0; count < 6; count++) {
+                // console.log("KEYS!!!! ", `${category[movieIdx].imdbMovieId}`)
                 cards.push(
                         <div className="item" 
                             onClick={reroute} 
@@ -64,9 +65,9 @@ const Home = ({
             }
             if(j+1 !== sectionNum) {
                 // cards.push(<a href={`#${catName}${j+2}`} className="arrow__btn">›</a>)
-                cards.push(<Link to={`#carousel_${catName}${j+2}`} className="arrow__btn">›</Link>)
+                cards.push(<Link key={`${catName}-${j+3}`} to={`#carousel_${catName}${j+2}`} className="arrow__btn">›</Link>)
             }
-            sections.push(<section key={`${j+1}`} id={`carousel_${catName}${j+1}`}>{cards}</section>)
+            sections.push(<section key={`${catName}-${j+1}`} id={`carousel_${catName}${j+1}`}>{cards}</section>)
         }
         return sections;
     }

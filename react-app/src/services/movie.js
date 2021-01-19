@@ -60,7 +60,6 @@ export const getComingSoonMovies = async () => {
 export const getCast = async (imdbMovieId) => {
 	const res = await fetch(`/api/movies/${imdbMovieId}/roles`);
 	if(res.ok) {
-		console.log("ROLES ALREADY EXISTS!!!!")
 		return await res.json();
 	} else if(res.status === 404) {
 		console.log(res.error);
@@ -71,7 +70,6 @@ export const getCast = async (imdbMovieId) => {
 export const getCast15 = async (imdbMovieId) => {
 	const res = await fetch(`/api/movies/${imdbMovieId}/roles/15`);
 	if(res.ok) {
-		console.log("ROLES ALREADY EXISTS!!!!")
 		return await res.json();
 	} else if(res.status === 404) {
 		console.log(res.error);

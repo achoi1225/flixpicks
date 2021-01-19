@@ -38,7 +38,7 @@
     /* background: -webkit-linear-gradient(45deg, #dd1919 0%, #c70404 100%); */
     /* -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
-    text-shadow: 1px 1px 6px black;
+    text-shadow: 1px 1px 4px black;
     color: #E50914;
     margin-left: 3px;
 }

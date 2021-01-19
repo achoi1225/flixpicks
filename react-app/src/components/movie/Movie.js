@@ -9,7 +9,7 @@ import {getMovie, getCast15} from '../../services/movie'
 import {getReviews} from '../../services/review'
 import {addMovie, getWatchlist, removeMovie} from '../../services/watchlist';
 import emptyProfile01 from '../../static/empty_profile01.jpeg';
-import emptyProfile02 from '../../static/empty_profile02.jpeg';
+// import emptyProfile02 from '../../static/empty_profile02.jpeg';
 
 
 const Movie = ({ user }) => {
@@ -25,7 +25,7 @@ const Movie = ({ user }) => {
     useEffect(() => {
         (async () => {
             const movie = await getMovie(imdbId);
-            console.log("movies", movie)
+            // console.log("movies", movie)
             if(!movie.errors) {
                 setMovie(movie)
                 const cast = await getCast15(imdbId);
@@ -88,11 +88,12 @@ const Movie = ({ user }) => {
                     <div className="movie-page__trailer-container">
                         {movie.trailer.trailerId ? 
                             <Iframe 
-                                url={`https://www.imdb.com/video/imdb/${movie.trailer.trailerId}/imdb/embed?autoplay=false`}
+                                src={`https://www.imdb.com/video/imdb/${movie.trailer.trailerId}/imdb/embed?autoplay=false&width=854`}
                                 allowFullScreen="true"
                                 className="movie-page__trailer"
-                                // styles={{height: "25px"}}
-                            /> :
+                                autoPlay="false"
+                            /> 
+                             :
                             <div className="trailer-unavailable">
                                 Trailer unavailable =(
                             </div>
@@ -121,7 +122,7 @@ const Movie = ({ user }) => {
                         {cast && cast.map((a, idx) => {
                             return(
                                 <div key={a.id} className="movie-page__actor-container">
-                                    <img className="movie-page__actor-thumbnail" src={a.image !== '' ? a.image : emptyProfile01}/>
+                                    <img className="movie-page__actor-thumbnail" src={a.image !== '' ? a.image : emptyProfile01} alt="empty-profile"/>
                                     <div className="movie-page__actor-name">
                                         {a.actor}
                                     </div>
