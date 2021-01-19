@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Iframe from 'react-iframe'
 import { useParams } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './movie.css'
 import ReviewForm from '../reviews/ReviewForm'
 import Reviews from '../reviews/Reviews'
@@ -69,32 +70,40 @@ const Movie = ({ user }) => {
                     <div className="movie-errors">{error}</div>
                 ))}
             </div>
-            <div className="movie-page__top-container">
-                <div className="movie-page__poster" style={{ backgroundImage: `url(${ movie.image })`}} >
-                    <div className="movie-page__info-container ">
-                            {isInWatchlist ? 
-                                <div className="watchlist-icon__container" data-tooltip="remove from watch list">
-                                    <div className="fas fa-check-circle" onClick={removeFromWatchlist}></div> 
-                                </div> :
-                                <div className="watchlist-icon__container" data-tooltip="add to watch list">
-                                    <div className="fas fa-plus-circle" onClick={addToWatchlist}></div> 
-                                </div>
-                            }
-                    </div>
-                </div>
-                <div className="movie-page__trailer-container">
-                    {movie.trailer.trailerId ? 
-                        <Iframe 
-                            url={`https://www.imdb.com/video/imdb/${movie.trailer.trailerId}/imdb/embed?autoplay=false`}
-                            allowFullScreen="true"
-                            className="movie-page__trailer"
-                            // styles={{height: "25px"}}
-                        /> :
-                        <div className="trailer-unavailable">
-                            Trailer unavailable =(
+             <div className="movie-page__top-container">
+                {movie ? 
+                    <>
+                    <div className="movie-page__poster" style={{ backgroundImage: `url(${ movie.image })`}} >
+                        <div className="movie-page__info-container ">
+                                {isInWatchlist ? 
+                                    <div className="watchlist-icon__container" data-tooltip="remove from watch list">
+                                        <div className="fas fa-check-circle" onClick={removeFromWatchlist}></div> 
+                                    </div> :
+                                    <div className="watchlist-icon__container" data-tooltip="add to watch list">
+                                        <div className="fas fa-plus-circle" onClick={addToWatchlist}></div> 
+                                    </div>
+                                }
                         </div>
-                    }
-                </div> 
+                    </div>
+                    <div className="movie-page__trailer-container">
+                        {movie.trailer.trailerId ? 
+                            <Iframe 
+                                url={`https://www.imdb.com/video/imdb/${movie.trailer.trailerId}/imdb/embed?autoplay=false`}
+                                allowFullScreen="true"
+                                className="movie-page__trailer"
+                                // styles={{height: "25px"}}
+                            /> :
+                            <div className="trailer-unavailable">
+                                Trailer unavailable =(
+                            </div>
+                        }
+                    </div> 
+                    </> :
+                    <div className="progress-container">
+                        Loading trailer...
+                        <CircularProgress color="secondary"/>
+                    </div>      
+                }
             </div>
             <div className="movie-page__content-container">
                 <div className="movie-page__title">
@@ -104,22 +113,30 @@ const Movie = ({ user }) => {
                     { movie.description }
                 </div>
                 <div className="movie-page__cast-container">
-                    <div className="movie-page__cast-header">
-                        Cast
-                    </div>
-                    {cast && cast.map((a, idx) => {
-                        return(
-                            <div key={a.id} className="movie-page__actor-container">
-                                <img className="movie-page__actor-thumbnail" src={a.image !== '' ? a.image : emptyProfile01}/>
-                                <div className="movie-page__actor-name">
-                                    {a.actor}
+                    {cast ? 
+                        <>
+                        <div className="movie-page__cast-header">
+                            Cast
+                        </div>
+                        {cast && cast.map((a, idx) => {
+                            return(
+                                <div key={a.id} className="movie-page__actor-container">
+                                    <img className="movie-page__actor-thumbnail" src={a.image !== '' ? a.image : emptyProfile01}/>
+                                    <div className="movie-page__actor-name">
+                                        {a.actor}
+                                    </div>
+                                    <div className="movie-page__character">
+                                        ... {a.character}
+                                    </div>
                                 </div>
-                                <div className="movie-page__character">
-                                    ... {a.character}
-                                </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })} 
+                        </>:
+                        <div className="progress-container">
+                            Loading cast...
+                            <CircularProgress color="secondary"/>
+                        </div>  
+                    }
                 </div>
                 <div className="review-form__container">
                     <ReviewForm user={user} imdbId={imdbId} setReviews={setReviews} getReviews={getReviews}/>
