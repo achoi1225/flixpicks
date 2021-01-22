@@ -1,3 +1,9 @@
+export const getAllReviews = async (userId) => {
+  console.log("HERE!")
+  const response = await fetch(`/api/users/${userId}/reviews`);
+  return await response.json();
+}
+
 export const getReviews = async (imdbMovieId) => {
 	const res = await fetch(`/api/movies/${imdbMovieId}/reviews`);
 	if(res.ok) {

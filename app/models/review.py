@@ -29,9 +29,9 @@ class Review(db.Model):
             "userId": self.user_id,
             "imdb_id": self.imdb_id,
             "stars": self.stars,
-            "user": self.user.to_dict_no_review(),
-            "movie": self.movie.to_dict_no_review(),
+            "movie": self.movie.to_dict_for_reviews(),
             "created_at": self.created_at,
+            "user": self.user.to_dict_no_review(),
         }
     
     def to_dict_no_user(self):

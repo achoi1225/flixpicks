@@ -63,3 +63,9 @@ CHANGE FAVICON AND title
 EDGE CASES!!!
 missing most key value pairs: tt6506264
 Already exists: tt0097647
+
+search feature:
+check database first - getall 
+filter out results labeled as popular, best picture, and coming soon
+if list is empty, make query to imdb api
+MAKE SURE CREATE MOVIE CHECKS TO SEE IF MOVIE EXISTS FIRST

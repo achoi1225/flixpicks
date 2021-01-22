@@ -1,0 +1,112 @@
+.review-list {
+    width: 100%;
+    margin-top: 60px;
+    min-height: 100vh;
+}
+
+.review-list h2 {
+    font-size: 20px;
+    color: white;
+    margin: 20px 0 0 100px; 
+}
+
+.review-list-content {
+    width: 100%;
+    padding: 20px 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    column-gap: 1%;
+    row-gap: 2.5%;
+}
+
+.review-list-content .review {
+    font-size: 14px;
+    /* height: 192px; */
+    line-height: 17px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    border-radius: 3px;
+    padding: 15px 20px 15px 20px;
+    color: #ada9a9;
+    display:flex;
+    flex-direction: column;
+    /* flex-direction: column; */
+    /* background: -webkit-linear-gradient(90deg, #151515 0%, #1e1e1e 100%); */
+    background: rgb(27, 27, 27, 0.6);
+}
+.review-list-content .movie-title-container {
+    width: 100%;
+    display: flex;
+}
+
+.review-list-content .movie-title {
+    flex-grow:1;
+    font-size: 12px;
+}
+
+.review-list-content .edit-btn {
+    color: white;
+    border: none;
+    background-color: transparent;
+}
+
+.review-list-content .delete-btn {
+    color: red;
+    border: none;
+    background-color: transparent;
+}
+
+.review-list-content .review-container {
+    display: flex;
+}
+
+.review-list-content .left {
+    width: 30%;
+    display: flex;
+    /* align-items: center; */
+}
+
+.review-list-content .poster-container {
+    width: 100%;
+    padding-top: 148%;
+    background-repeat:   no-repeat;
+    background-size: contain;  
+}
+
+.review-list-content .right {
+    width: 70%;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-list-content .review__stars-container {
+    display: flex;
+    height: 18px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.review-list-content .review__content {
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    line-height: 16px;
+    /* max-height: 45%; */
+}
+
+.review-list-content .read-only {
+    background: -webkit-linear-gradient(90deg, #946a2e 0%, #e6ad5b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-right: 2px;
+}
+
+.review-list-content .review__date {
+    font-style: italic;
+    font-size: 12px;
+}

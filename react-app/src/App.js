@@ -5,11 +5,12 @@ import Home from "./components/home/Home";
 import SignUpPage from "./components/auth/SignUpPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./services/auth";
-import Profile from "./components/profile/Profile";
-import './index.css'
+import WatchList from "./components/watch-list/WatchList";
+import ReviewList from "./components/review-list/ReviewList";
 import Movie from "./components/movie/Movie"
 import SearchResult from "./components/search-result/SearchResult"
 import Footer from "./components/Footer";
+import './index.css'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -59,8 +60,11 @@ function App() {
                 isLoggingIn={isLoggingIn}
                 setIsLoggingIn={setIsLoggingIn}/>
           </Route>
-          <ProtectedRoute path="/profile" exact={true} authenticated={authenticated}>
-              <Profile user={user} />
+          <ProtectedRoute path="/watch-list" exact={true} authenticated={authenticated}>
+              <WatchList user={user} />
+          </ProtectedRoute>
+          <ProtectedRoute path="/review-list" exact={true} authenticated={authenticated}>
+              <ReviewList user={user} />
           </ProtectedRoute>
           <Route path="/" exact={true} authenticated={authenticated}>
             <Home 

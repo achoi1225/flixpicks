@@ -49,7 +49,7 @@ def edit_profile(id):
 @login_required
 def get_reviews(id):
     reviews = Review.query.filter_by(user_id = id).all()
-    return [review.to_dict() for review in reviews]
+    return { 'allReviews' : [review.to_dict() for review in reviews]}
 
 # CREATE REVIEW
 @user_routes.route('/<int:id>/reviews', methods=["POST"])

@@ -1,4 +1,10 @@
-.profile-header {
+.watchlist {
+    width: 100%;
+    margin-top: 60px;
+    min-height: 100vh;
+}
+
+.watchlist-header {
       padding: 30px 100px;
       display: flex;
       border-bottom: solid 1px #808080;
@@ -6,22 +12,22 @@
       /* color: black; */
 }
 
-.profile__header-container {
+.watchlist__header-container {
     width: 100%;
     display: flex;
 }
 
-.profile-title {
+.watchlist-title {
     font-size: 1.5vw;
     /* font-size: 22px; */
 }
 
-.profile-email {
+.watchlist-email {
     font-size: 1.5vw;
     /* font-size: 22px; */
 }
 
-.profile-image {
+.watchlist-image {
     width: 7%;
     display: flex;
     align-items: center;
@@ -36,24 +42,24 @@
     font-size: 5vw;
 }
 
-.profile-info {
-    padding: 0 0 0 15px;
+.watchlist-content {
+    width: 100%;
+    padding: 20px 100px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: auto;
+    column-gap: 2%;
+    row-gap: 4%;
+}
+
+.watchlist h2 {
+    font-size: 20px;
     color: white;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin: 20px 0 0 100px; 
     /* background-color: red; */
 }
 
-.profile-info span {
-    font-weight: normal;
-    color: #828282;
+.card-options .fa-check-circle {
+    font-size: 1.6vw;
+    line-height: 1.3vw;
 }
-
-
-
-
-
-
-

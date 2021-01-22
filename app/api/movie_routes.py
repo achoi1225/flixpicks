@@ -402,11 +402,8 @@ def create_trailer(data, imdb_id):
         trailer_id=trailer_id
     )
 
-    print(f"TRAILER!!!!!!!!!!!!!!! {trailer}")
     db.session.add(trailer)
     db.session.commit()
-
-    print("LEAVING CREATE TRAILER!!!!!!")
 
     return trailer.to_dict()
 # =========================================================================================================
