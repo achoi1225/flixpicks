@@ -48,7 +48,7 @@ def edit_profile(id):
 @user_routes.route('/<int:id>/reviews', methods=["GET"])
 @login_required
 def get_reviews(id):
-    reviews = Review.query.filter_by(user_id = id).all()
+    reviews = Review.query.filter_by(user_id = id).order_by(Review.created_at.desc()).all()
     return { 'allReviews' : [review.to_dict() for review in reviews]}
 
 # CREATE REVIEW
@@ -86,8 +86,8 @@ def edit_review(id, review_id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        if request.is_json():
-            review_to_edit = Review.query.get(review_id)
+        if request.is_json:
+            review_to_edit = Review.query.get(review_id);
 
             if not review_to_edit:
                 return {"errors": [f"Review with ID {review_id} does not exist"]}
@@ -110,6 +110,7 @@ def edit_review(id, review_id):
 @user_routes.route('/<int:id>/reviews/<int:review_id>', methods=["DELETE"])
 @login_required
 def delete_review(review_id):
+    print("HERE!!!!!!!!")
     review_to_delete = Review.query.get(review_id)
 
     if review_to_delete:

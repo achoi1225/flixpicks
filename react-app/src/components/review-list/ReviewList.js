@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom';
 import Profile from '../profile/Profile';
 import ReviewEditForm from './ReviewEditForm';
 import './reviewlist.css';
-import { getAllReviews } from '../../services/review';
+import { getAllReviews, deleteReview } from '../../services/review';
 
 const ReviewList = ({ user }) => {
     const [reviews, setReviews] = useState([]);
     // const [currentImdbId, setCurrentImdbId] = useState("");
     const [currentReview, setCurrentReview] = useState(null);
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
   let history = useHistory();
 
@@ -32,19 +33,30 @@ const ReviewList = ({ user }) => {
         return stars;
     }
 
-    const showEditForm = () => {
-        // e.stopPropagation();
-        console.log("hello!")
-        // const review = reviews[e.target.id]
-        // console.log(`CURRENT REVIEW!!! ${review.content}`);
-        // setCurrentReview(review);
+    const showEditForm = (e) => {
+        setCurrentReview(reviews[e.target.id]);
+        setIsFormVisible(true);
+    }
+
+    const reviewDeleteHandler = async (reviewId) => {
+        await deleteReview(user.id, reviewId);
+        const reviews = await getAllReviews(currentReview.userId);
+        setReviews(reviews.allReviews);
+        setIsFormVisible(false);
     }
 
     return (
         <div className="review-list">
             <Profile user={user} />  
             <h2>Your Reviews</h2>
-            <ReviewEditForm user={user} currentReview={currentReview} setReviews={setReviews} getAllReviews={getAllReviews} />
+            {isFormVisible &&
+                <ReviewEditForm 
+                    user={user} 
+                    currentReview={currentReview} 
+                    setReviews={setReviews} 
+                    getAllReviews={getAllReviews} 
+                    setIsFormVisible={setIsFormVisible}/>
+            }
             <div className="review-list-content">
                 <>
                 {reviews && reviews.map((review, idx) => {
@@ -55,7 +67,7 @@ const ReviewList = ({ user }) => {
                                     {review.movie.title}
                                 </div>
                                 <button className="edit-btn" id={idx} onClick={showEditForm}>edit</button>
-                                <button className="delete-btn">delete</button>
+                                <button className="delete-btn" onClick={() => reviewDeleteHandler(review.id)}>delete</button>
                             </div>
 
                             <div className="review-container">

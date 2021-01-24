@@ -30,7 +30,7 @@ const ReviewForm = ({ user, imdbId, setReviews, getReviews }) => {
     };
 
     const updateRating = (e) => {
-        console.log("RATING!!! ", e.target.id)
+        // console.log("RATING!!! ", e.target.id)
         setRating(parseInt(e.target.id));
         e.stopPropagation();
     }

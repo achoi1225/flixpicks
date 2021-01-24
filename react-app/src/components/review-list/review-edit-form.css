@@ -2,9 +2,20 @@
     width: 30%;
     height: 30%;
     padding: 0 30px;
-    /* background: rgb(27, 27, 27, 0.6); */
-    background-color: red;
+    background: rgba(32, 32, 32, 0.9);
     position: absolute;
     margin: auto;
     top: 0; left: 0; bottom: 0; right: 0;
+    /* display:none; */
+}
+
+.review-edit-form__close-btn {
+    border: none;
+    background-color: transparent;
+    color: white;
+    float: right;
+}
+
+.review-edit-form__close-btn:hover {
+    text-decoration: underline;
 }

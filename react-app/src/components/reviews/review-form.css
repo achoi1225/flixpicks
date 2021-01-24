@@ -5,13 +5,15 @@
 .review-form__label-rating-container {
     display: flex;
     margin-bottom: 10px;
+    /* background-color: red; */
+    justify-content: space-between;
 }
 
 .review-form__label {
     height: 29px;
     font-size: 22px;
     font-weight: 500;
-    /* background-color: aqua; */
+    color: white;
     padding-top: 3px;
 }
 

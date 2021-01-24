@@ -96,6 +96,7 @@
     -webkit-line-clamp: 8;
     -webkit-box-orient: vertical;
     line-height: 16px;
+    background-color: red;
     /* max-height: 45%; */
 }
 
@@ -109,4 +110,5 @@
 .review-list-content .review__date {
     font-style: italic;
     font-size: 12px;
+    background-color: #946a2e;
 }

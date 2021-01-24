@@ -1,5 +1,4 @@
 export const getAllReviews = async (userId) => {
-  console.log("HERE!")
   const response = await fetch(`/api/users/${userId}/reviews`);
   return await response.json();
 }
@@ -26,6 +25,29 @@ export const createReview = async (content, userId, imdbId, stars) => {
       imdbId,
       stars
     })
+  });
+  return await response.json();
+}
+
+export const editReview = async (userId, reviewId, content, stars) => {
+  const response = await fetch(`/api/users/${userId}/reviews/${reviewId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      content,
+      stars
+    })
+  });
+  return await response.json();
+}
+
+export const deleteReview = async (userId, reviewId) => {
+  // console.log("USER ID ", userId)
+  // console.log("review ID ", reviewId)
+  const response = await fetch(`/api/users/${userId}/reviews/${reviewId}`, {
+    method: 'DELETE',
   });
   return await response.json();
 }
