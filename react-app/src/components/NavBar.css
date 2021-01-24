@@ -120,7 +120,7 @@
     margin-top: 2px;
 }
 
-.profile-menu .watchlist {
+.profile-menu .menu-btn {
     color: white;
     text-decoration: none;
     font-size: 14px;
@@ -128,7 +128,7 @@
     margin-top: 10px;
 }
 
-.profile-menu .watchlist:hover {
+.profile-menu .menu-btn:hover {
     text-decoration: underline;
 }
 

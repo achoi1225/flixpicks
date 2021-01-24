@@ -30,8 +30,12 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user, setIsLoggingIn
       history.push("/sign-up")
     }
 
-    const rerouteProfile = () => {
-      history.push("/profile")
+    const rerouteWatchList = () => {
+      history.push("/watch-list")
+    }
+
+    const rerouteReviewList = () => {
+      history.push("/review-list")
     }
 
     if(location.pathname === '/sign-up') return null
@@ -63,11 +67,15 @@ const NavBar = ({ setAuthenticated, authenticated, setUser, user, setIsLoggingIn
                     </div>
                     <div className="username">{user.username}</div>
                     {/* <NavLink className="watchlist" to="/profile"><i className="fas fa-chevron-right"></i> watch list</NavLink> */}
-                    <div className="watchlist" 
-                      to="/profile"
-                      onClick={rerouteProfile}>
-                        {/* <i className="fas fa-chevron-right"></i>  */}
+                    <div className="menu-btn" 
+                      to="/watch-list"
+                      onClick={rerouteWatchList}>
                         watch list
+                    </div>
+                    <div className="menu-btn" 
+                      to="/review-list"
+                      onClick={rerouteReviewList}>
+                        review list
                     </div>
                   </div>  
                 }
