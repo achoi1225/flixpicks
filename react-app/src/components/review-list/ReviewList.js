@@ -40,7 +40,7 @@ const ReviewList = ({ user }) => {
 
     const reviewDeleteHandler = async (reviewId) => {
         await deleteReview(user.id, reviewId);
-        const reviews = await getAllReviews(currentReview.userId);
+        const reviews = await getAllReviews(user.id);
         setReviews(reviews.allReviews);
         setIsFormVisible(false);
     }
@@ -57,33 +57,33 @@ const ReviewList = ({ user }) => {
                     getAllReviews={getAllReviews} 
                     setIsFormVisible={setIsFormVisible}/>
             }
-            <div className="review-list-content">
+            <div className="review-list__container">
                 <>
                 {reviews && reviews.map((review, idx) => {
                     return (
-                        <div key={review.id} className="review">
-                            <div className="movie-title-container">
-                                <div className="movie-title">
+                        <div key={review.id} className="review-list__review">
+                            <div className="review-list__movie-title-container">
+                                <div className="review-list__movie-title">
                                     {review.movie.title}
                                 </div>
-                                <button className="edit-btn" id={idx} onClick={showEditForm}>edit</button>
-                                <button className="delete-btn" onClick={() => reviewDeleteHandler(review.id)}>delete</button>
+                                <button className="review-list__edit-btn" id={idx} onClick={showEditForm}>edit</button>
+                                <button className="review-list__delete-btn" onClick={() => reviewDeleteHandler(review.id)}>delete</button>
                             </div>
 
-                            <div className="review-container">
-                                <div className="left">
-                                    <div className="poster-container" style={{ backgroundImage: `url(${ review.movie.image })`}} ></div>
+                            <div className="review-list__content-container">
+                                <div className="review-list__left">
+                                    <div className="review-list__poster-container" style={{ backgroundImage: `url(${ review.movie.image })`}} ></div>
                                 </div>
-                                <div className="right">
-                                    <div className="review__stars-container">
-                                        <div className="review__stars-read-only">
+                                <div className="review-list__right">
+                                    <div className="review-list__stars-container">
+                                        <div className="review-list__stars-read-only">
                                             {createReadOnlyStarRating(review.stars)}
                                         </div>
                                     </div>
-                                    <div className="review__content">
+                                    <div className="review-list__content">
                                         {review.content}
                                     </div>
-                                    <div className="review__date">{review.created_at}</div>
+                                    <div className="review-list__date">{review.created_at}</div>
                                 </div>
                             </div>
                         </div>

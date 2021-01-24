@@ -10,7 +10,7 @@
     margin: 20px 0 0 100px; 
 }
 
-.review-list-content {
+.review-list__container {
     width: 100%;
     padding: 20px 100px;
     display: grid;
@@ -20,8 +20,8 @@
     row-gap: 2.5%;
 }
 
-.review-list-content .review {
-    font-size: 14px;
+.review-list__review {
+    font-size: 13px;
     /* height: 192px; */
     line-height: 17px;
     font-weight: 400;
@@ -35,60 +35,65 @@
     /* background: -webkit-linear-gradient(90deg, #151515 0%, #1e1e1e 100%); */
     background: rgb(27, 27, 27, 0.6);
 }
-.review-list-content .movie-title-container {
+
+.review-list__movie-title-container {
     width: 100%;
     display: flex;
+    margin-bottom: 5px;
 }
 
-.review-list-content .movie-title {
+.review-list__movie-title {
     flex-grow:1;
     font-size: 12px;
 }
 
-.review-list-content .edit-btn {
+.review-list__edit-btn {
+    font-size: 12px;
     color: white;
     border: none;
     background-color: transparent;
 }
 
-.review-list-content .delete-btn {
+.review-list__delete-btn {
+    font-size: 12px;
     color: red;
     border: none;
     background-color: transparent;
 }
 
-.review-list-content .review-container {
+.review-list__content-container {
     display: flex;
 }
 
-.review-list-content .left {
+.review-list__left {
     width: 30%;
     display: flex;
     /* align-items: center; */
 }
 
-.review-list-content .poster-container {
+.review-list__poster-container {
     width: 100%;
     padding-top: 148%;
     background-repeat:   no-repeat;
     background-size: contain;  
 }
 
-.review-list-content .right {
+.review-list__right {
     width: 70%;
     padding-left: 10px;
     display: flex;
     flex-direction: column;
+    /* flex-grow: 1; */
 }
 
-.review-list-content .review__stars-container {
+.review-list__stars-container {
     display: flex;
     height: 18px;
     align-items: flex-end;
     margin-bottom: 10px;
 }
 
-.review-list-content .review__content {
+.review-list__content {
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -96,19 +101,19 @@
     -webkit-line-clamp: 8;
     -webkit-box-orient: vertical;
     line-height: 16px;
-    background-color: red;
+    flex-grow: 1;
     /* max-height: 45%; */
 }
 
-.review-list-content .read-only {
+.review-list__read-only {
     background: -webkit-linear-gradient(90deg, #946a2e 0%, #e6ad5b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-right: 2px;
 }
 
-.review-list-content .review__date {
+.review-list__date {
     font-style: italic;
-    font-size: 12px;
-    background-color: #946a2e;
+    font-size: 11px;
+    align-self: flex-end;
 }

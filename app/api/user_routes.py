@@ -109,12 +109,13 @@ def edit_review(id, review_id):
 # DELETE REVIEW
 @user_routes.route('/<int:id>/reviews/<int:review_id>', methods=["DELETE"])
 @login_required
-def delete_review(review_id):
-    print("HERE!!!!!!!!")
+def delete_review(id, review_id):
     review_to_delete = Review.query.get(review_id)
+    print(f"REVIEW!!!! {review_to_delete}")
 
     if review_to_delete:
-        review_to_delete.delete()
+        db.session.delete(review_to_delete)
+        db.session.commit()
         return {"response": f"Review with ID {review_id} has been deleted"}
     else:
         return {"errors": [f"Review with ID {review_id} does not exist"]}
