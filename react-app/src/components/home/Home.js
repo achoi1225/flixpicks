@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 import './home.css';
@@ -16,6 +16,7 @@ const Home = ({
                 setBestPictureMovies, 
                 comingSoonMovies,
                 setComingSoonMovies }) => {
+    const [isMuted, setIsMuted] = useState(false);
     let history = useHistory();
     const videoRef = useRef();
 
@@ -35,9 +36,15 @@ const Home = ({
         })()
     }, [setMostPopularMovies, setBestPictureMovies, setComingSoonMovies]);
 
-    const setPlayBackSpeed = () => {
-        videoRef.current.playbackRate = 0.5;
-    };
+    const setMute = () => {
+        videoRef.current.muted=true;
+        setIsMuted(true);
+    }
+
+    const setUnmute = () => {
+        videoRef.current.muted=false;
+        setIsMuted(false);
+    }
 
     const reroute = (e) => {
         history.push(`/movie/${e.target.id}`)
@@ -86,9 +93,8 @@ const Home = ({
                 className="feature-1"
                 id="videoBg"
                 autoPlay 
-                muted
-                // ref={videoRef}
-                // onCanPlay={() => setPlayBackSpeed()} 
+                ref={videoRef}
+                // onCanPlay={() => setPause()} 
             >
                     <source src={wwTrailer} type="video/mp4"/>
                 </video>
@@ -97,6 +103,15 @@ const Home = ({
             {/* <div className="feature-1">
             </div> */}
         </div>
+        <div className="feature__mute-btn-container">
+            {isMuted ?
+                <div onClick={setMute} className="fas fa-volume-mute">
+                </div> :
+                <div onClick={setUnmute} className="fas fa-volume-up">
+                </div>
+            }
+        </div> 
+
         {/* <div className="feature-2">
         </div> */}
 

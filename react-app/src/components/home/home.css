@@ -39,6 +39,22 @@
   animation-delay: 5s; */
 }
 
+.feature__mute-btn-container {
+  /* width: 2.5%; */
+  /* background-color: red; */
+  position: absolute;
+  top: 8%;
+  right: 4%;
+  z-index: 5;
+}
+
+.fa-volume-mute,
+.fa-volume-up {
+  font-size: 1.5vw;
+  color: white;
+  text-shadow: #000000;
+}
+
 .feature-logo1-container {
   width: 20%;
   position: absolute;
