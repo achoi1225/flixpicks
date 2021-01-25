@@ -40,33 +40,32 @@
 }
 
 .feature-logo-container {
-  width: 100%;
+  width: 18%;
   position: absolute;
   z-index: 3;
+  margin: 7% 0 0 3%;
+  animation: animate-logo linear 10s normal;
 }
 
 .ww-logo {
-  width: 18%;
+  width: 100%;
   background-repeat:   no-repeat;
   background-size: cover; 
   /* position: absolute; */
-  margin: 7% 0 0 3%;
 }
 
-@keyframes animate-1{
+@keyframes animate-logo{
   0% {
-    width: 115%;
-    opacity: 1;
+    width: 18%;
   } 
   30% {
-    opacity: 0;
+    width: 18%;
   } 
-  80% {
-    opacity: 0.5
+  70% {
+    width: 18%;
   }
   100% {
-    width: 100%;
-    opacity: 1;
+    width: 15%;
   }
 }
 
