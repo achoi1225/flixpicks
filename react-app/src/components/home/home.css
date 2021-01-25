@@ -39,13 +39,42 @@
   animation-delay: 5s; */
 }
 
+.feature__plot-outline-container {
+  width: 22%;
+  /* background-color: red; */
+  position: absolute;
+  top: 51%;
+  left: 0.5%;
+  font-size: 0.8vw;
+  color: white;
+  text-align: center;
+  z-index: 1;
+  text-shadow: 1px 1px #000000;
+  animation-name: animate-plot;
+  animation-duration: 1.3s;
+  animation-fill-mode: forwards;
+  animation-delay: 6.3s;
+  animation-timing-function: ease-out;
+  opacity: 0;
+}
+
+@keyframes animate-plot{
+  0% {
+    opacity: 0;
+  } 
+  100% {
+    left: 2%;
+    opacity: 1;
+  }
+}
+
 .feature__mute-btn-container {
   /* width: 2.5%; */
   /* background-color: red; */
   position: absolute;
-  top: 8%;
-  right: 4%;
-  z-index: 5;
+  top: 11%;
+  right: 2.5%;
+  z-index: 1;
 }
 
 .fa-volume-mute,
@@ -53,6 +82,7 @@
   font-size: 1.5vw;
   color: white;
   text-shadow: #000000;
+  cursor: pointer;
 }
 
 .feature-logo1-container {
@@ -62,7 +92,7 @@
   margin: 7% 0 0 7%;
   /* animation: animate-logo linear 10s; */
   animation-name: animate-logo1;
-  animation-duration: 1s;
+  animation-duration: 1.3s;
   animation-fill-mode: forwards;
   animation-delay: 6s;
   animation-timing-function: ease-out;

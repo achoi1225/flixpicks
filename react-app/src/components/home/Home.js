@@ -17,6 +17,7 @@ const Home = ({
                 comingSoonMovies,
                 setComingSoonMovies }) => {
     const [isMuted, setIsMuted] = useState(false);
+    const [soundControlVisible, setSoundControlVisible] = useState(false);
     let history = useHistory();
     const videoRef = useRef();
 
@@ -24,15 +25,13 @@ const Home = ({
         (async () => {
             const mpm = await getMostPopularMovies();
             setMostPopularMovies(mpm.most_popular)
-            // console.log("MOST POPULAR MOVIES!!! ", mpm)
+            console.log("MOST POPULAR MOVIES!!! ", mpm)
 
             const bp = await getBestPictureMovies();
             setBestPictureMovies(bp.best_picture)
-            // console.log("BEST PICTURE MOVIES!!! ", bp)
 
             const cs = await getComingSoonMovies();
             setComingSoonMovies(cs.coming_soon)
-            // console.log("COMING SOON MOVIES!!! ", bp)
         })()
     }, [setMostPopularMovies, setBestPictureMovies, setComingSoonMovies]);
 
@@ -44,6 +43,14 @@ const Home = ({
     const setUnmute = () => {
         videoRef.current.muted=false;
         setIsMuted(false);
+    }
+
+    const showSoundControl = () => {
+        setSoundControlVisible(true)
+    }
+
+    const hideSoundControl = () => {
+        setSoundControlVisible(false)
     }
 
     const reroute = (e) => {
@@ -88,7 +95,9 @@ const Home = ({
 
     return (
         <>
-        <div className="feature-holder">
+        <div className="feature-holder"
+            onMouseEnter={showSoundControl}
+            onMouseLeave={hideSoundControl}>
             <video 
                 className="feature-1"
                 id="videoBg"
@@ -102,15 +111,21 @@ const Home = ({
             {/************** Alternative bg image ************/}
             {/* <div className="feature-1">
             </div> */}
+
+            <div className="feature__plot-outline-container">
+                {mostPopularMovies && mostPopularMovies[1].description}
+            </div>
+            {soundControlVisible && 
+                <div className="feature__mute-btn-container">
+                    {isMuted ?
+                        <div onClick={setUnmute} className="fas fa-volume-mute">
+                        </div> :
+                        <div onClick={setMute} className="fas fa-volume-up">
+                        </div>
+                    }
+                </div> 
+            }   
         </div>
-        <div className="feature__mute-btn-container">
-            {isMuted ?
-                <div onClick={setMute} className="fas fa-volume-mute">
-                </div> :
-                <div onClick={setUnmute} className="fas fa-volume-up">
-                </div>
-            }
-        </div> 
 
         {/* <div className="feature-2">
         </div> */}
