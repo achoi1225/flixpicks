@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 import './home.css';
-import FooterMovie from '../footer-movie/FooterMovie';
-import wwLogo from '../../static/Daco_121609.png';
+import FooterHome from '../footer-movie/FooterHome';
+import wwLogo1 from '../../static/Daco_121609.png';
+import wwLogo2 from '../../static/wonder-woman-logo.png';
+import wwTrailer from '../../static/ww_trailer.mp4';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { getMostPopularMovies, getBestPictureMovies, getComingSoonMovies } from '../../services/movie'
 
@@ -75,13 +77,30 @@ const Home = ({
     return (
         <>
         <div className="feature-holder">
-            <div className="feature-1">
-            </div>
+            <video 
+                className="feature-1"
+                id="videoBg"
+                autoPlay 
+                muted
+                // ref={videoRef}
+                // onCanPlay={() => setPlayBackSpeed()} 
+            >
+                    <source src={wwTrailer} type="video/mp4"/>
+                </video>
+            
+            {/************** Alternative bg image ************/}
+            {/* <div className="feature-1">
+            </div> */}
         </div>
         {/* <div className="feature-2">
         </div> */}
-        <div className="feature-logo-container">
-            <img className="ww-logo" src={wwLogo} alt="wonderwoman-logo"/>
+
+        {/* <div className="feature-logo1-container">
+            <img className="ww-logo1" src={wwLogo1} alt="wonderwoman-symbol"/>
+        </div> */}
+
+        <div className="feature-logo2-container">
+            <img className="ww-logo2" src={wwLogo2} alt="wonderwoman-logo"/>
         </div>
 
         <div className="main-content">
@@ -130,7 +149,7 @@ const Home = ({
             </div> */} 
 
         </div>
-        <FooterMovie />
+        <FooterHome />
         </>
     );
 };
