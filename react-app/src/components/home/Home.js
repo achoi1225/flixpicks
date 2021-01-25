@@ -58,6 +58,11 @@ const Home = ({
         history.push(`/movie/${e.target.id}`)
     }
 
+    const rerouteFeature = (e) => {
+        const featureImdbId = mostPopularMovies[1].imdbMovieId
+        history.push(`/movie/${featureImdbId}`)
+    }
+
     const createCarousel = (category, catName) => {
         const sections = [];
         const sectionNum = Math.floor(category.length/6) + 1;
@@ -116,6 +121,10 @@ const Home = ({
             </div>
             <div className="feature__plot-outline-container">
                 {mostPopularMovies && mostPopularMovies[1].description}
+                <button className="feature__more-details-btn" onClick={rerouteFeature}>
+                    <i className="fas fa-caret-right"></i>
+                    <span>more details</span>
+                </button>
             </div>
             {soundControlVisible && 
                 <div className="feature__mute-btn-container">

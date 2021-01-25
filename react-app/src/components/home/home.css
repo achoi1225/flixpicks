@@ -38,13 +38,11 @@
 
 .feature__plot-outline-container {
   width: 22%;
-  /* background-color: red; */
   position: absolute;
   margin: 26% 0 0 0;
   font-size: 0.8vw;
   color: white;
-  text-align: center;
-  z-index: 1;
+  z-index: 2;
   text-shadow: 1px 1px #000000;
   animation-name: animate-plot;
   animation-duration: 1s;
@@ -52,6 +50,8 @@
   animation-delay: 6s;
   animation-timing-function: ease-out;
   opacity: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes animate-plot{
@@ -65,7 +65,6 @@
 }
 
 .feature__mute-btn-container {
-  /* width: 2.5%; */
   /* background-color: red; */
   position: absolute;
   margin: 5% 2% 0 0;
@@ -119,10 +118,10 @@
   margin: 16% 0 0 4%;
   /* animation: animate-logo linear 10s; */
   animation-name: animate-logo2;
-  animation-duration: 0.9s;
+  animation-duration: 1.2s;
   animation-fill-mode: forwards;
   animation-delay: 6s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-out;
 }
 
 .ww-logo2 {
@@ -136,9 +135,36 @@
     width: 25%;
   } 
   100% {
-    width: 18%;
+    width: 17%;
     margin: 21% 0 0 4%;
   }
+}
+
+.feature__more-details-btn {
+  box-sizing: content-box;
+  color: white;
+  width:  26%;
+  font-size: 0.9vw;
+  background: rgba(230, 9, 9, 0.9);
+  border-radius: 3px;
+  border: none;
+  display: flex;
+  padding: 1% 3%;
+  cursor: pointer;
+  margin-top: 3%;
+}
+
+.feature__more-details-btn:hover {
+  border: 1px solid white;
+  margin: 2.7% 0 0 -0.3%;
+}
+
+.feature__more-details-btn span {
+  margin: 2% 0 0 4%;
+}
+
+.fa-caret-right {
+  font-size: 1.4vw;
 }
 
 .feature__gradient {
@@ -146,7 +172,6 @@
   position: absolute;
   padding: 10%;
   background-size:contain;
-  /* background-color: red; */
   color: white;
   z-index: 1;
   margin-top: 22%;
