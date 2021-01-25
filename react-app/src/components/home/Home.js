@@ -6,6 +6,7 @@ import FooterHome from '../footer-movie/FooterHome';
 import wwLogo1 from '../../static/Daco_121609.png';
 import wwLogo2 from '../../static/wonder-woman-logo.png';
 import wwTrailer from '../../static/ww_trailer.mp4';
+import gradient from '../../static/black-to-transparent.png';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { getMostPopularMovies, getBestPictureMovies, getComingSoonMovies } from '../../services/movie'
 
@@ -102,9 +103,7 @@ const Home = ({
                 className="feature-1"
                 id="videoBg"
                 autoPlay 
-                ref={videoRef}
-                // onCanPlay={() => setPause()} 
-            >
+                ref={videoRef}>
                     <source src={wwTrailer} type="video/mp4"/>
                 </video>
             
@@ -112,6 +111,9 @@ const Home = ({
             {/* <div className="feature-1">
             </div> */}
 
+            <div className="feature-logo2-container">
+                <img className="ww-logo2" src={wwLogo2} alt="wonderwoman-logo"/>
+            </div>
             <div className="feature__plot-outline-container">
                 {mostPopularMovies && mostPopularMovies[1].description}
             </div>
@@ -125,6 +127,10 @@ const Home = ({
                     }
                 </div> 
             }   
+            <div 
+                className="feature__gradient" 
+                style={{ backgroundImage: `url(${gradient})`}}>
+            </div>
         </div>
 
         {/* <div className="feature-2">
@@ -133,10 +139,6 @@ const Home = ({
         {/* <div className="feature-logo1-container">
             <img className="ww-logo1" src={wwLogo1} alt="wonderwoman-symbol"/>
         </div> */}
-
-        <div className="feature-logo2-container">
-            <img className="ww-logo2" src={wwLogo2} alt="wonderwoman-logo"/>
-        </div>
 
         <div className="main-content">
             <h1>{mostPopularMovies && 'Most Popular'}</h1>
