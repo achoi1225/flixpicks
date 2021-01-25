@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 import './home.css';
@@ -17,6 +17,7 @@ const Home = ({
                 comingSoonMovies,
                 setComingSoonMovies }) => {
     let history = useHistory();
+    const videoRef = useRef();
 
     useEffect(() => {
         (async () => {
@@ -33,6 +34,10 @@ const Home = ({
             // console.log("COMING SOON MOVIES!!! ", bp)
         })()
     }, [setMostPopularMovies, setBestPictureMovies, setComingSoonMovies]);
+
+    const setPlayBackSpeed = () => {
+        videoRef.current.playbackRate = 0.5;
+    };
 
     const reroute = (e) => {
         history.push(`/movie/${e.target.id}`)
