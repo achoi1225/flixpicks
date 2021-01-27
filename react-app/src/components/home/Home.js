@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 import './home.css';
 import FooterHome from '../footer-movie/FooterHome';
-import wwLogo1 from '../../static/Daco_121609.png';
+// import wwLogo1 from '../../static/Daco_121609.png';
 import wwLogo2 from '../../static/wonder-woman-logo.png';
 import wwTrailer from '../../static/ww_trailer.mp4';
 import gradient from '../../static/black-to-transparent.png';
@@ -17,7 +17,7 @@ const Home = ({
                 setBestPictureMovies, 
                 comingSoonMovies,
                 setComingSoonMovies }) => {
-    const [isMuted, setIsMuted] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
     const [soundControlVisible, setSoundControlVisible] = useState(false);
     let history = useHistory();
     const videoRef = useRef();
@@ -78,7 +78,6 @@ const Home = ({
                 cards.push(<Link key={`${catName}-${j}`} to={`#carousel_${catName}${j}`} className="arrow__btn">‹</Link>);
             }
             for(let count = 0; count < 6; count++) {
-                // console.log("KEYS!!!! ", `${category[movieIdx].imdbMovieId}`)
                 cards.push(
                         <div className="item" 
                             onClick={reroute} 
@@ -107,7 +106,8 @@ const Home = ({
             <video 
                 className="feature-1"
                 id="videoBg"
-                autoPlay 
+                autoPlay="true"
+                muted 
                 ref={videoRef}>
                     <source src={wwTrailer} type="video/mp4"/>
                 </video>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, } from 'react';
-import { useHistory } from 'react-router-dom';
 import Profile from '../profile/Profile';
 import ReviewEditForm from './ReviewEditForm';
 import './reviewlist.css';
@@ -10,8 +9,6 @@ const ReviewList = ({ user }) => {
     // const [currentImdbId, setCurrentImdbId] = useState("");
     const [currentReview, setCurrentReview] = useState(null);
     const [isFormVisible, setIsFormVisible] = useState(false);
-
-  let history = useHistory();
 
     useEffect(() => {
             (async () => {
