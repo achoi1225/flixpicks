@@ -59,7 +59,7 @@ const Home = ({
     }
 
     const rerouteFeature = (e) => {
-        const featureImdbId = mostPopularMovies[1].imdbMovieId
+        const featureImdbId = mostPopularMovies[6].imdbMovieId
         history.push(`/movie/${featureImdbId}`)
     }
 
@@ -108,6 +108,7 @@ const Home = ({
                 id="videoBg"
                 autoPlay="true"
                 muted 
+                volume='0.2'
                 ref={videoRef}>
                     <source src={wwTrailer} type="video/mp4"/>
                 </video>
@@ -120,7 +121,7 @@ const Home = ({
                 <img className="ww-logo2" src={wwLogo2} alt="wonderwoman-logo"/>
             </div>
             <div className="feature__plot-outline-container">
-                {mostPopularMovies && mostPopularMovies[1].description}
+                {mostPopularMovies && mostPopularMovies[6].description}
                 <button className="feature__more-details-btn" onClick={rerouteFeature}>
                     <i className="fas fa-caret-right"></i>
                     <span>more details</span>
